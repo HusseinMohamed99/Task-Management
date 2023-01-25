@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,14 @@ import 'package:task_management/screens/settings/settings_screen.dart';
 import 'package:task_management/screens/tasks/tasks_screen.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+ await WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(  ChangeNotifierProvider(
       create: (buildContext) => SettingsProvider(),
       child:Builder(
