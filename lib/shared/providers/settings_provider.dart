@@ -14,8 +14,6 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
   void changeTheme(ThemeMode newMode)async {
     final pref =await SharedPreferences.getInstance();
     if (newMode == currentTheme)return;
@@ -23,6 +21,7 @@ class SettingsProvider extends ChangeNotifier {
     pref.setString("Theme", currentTheme == ThemeMode.light ? "Light" : "Dark");
     notifyListeners();
   }
+
     bool isDarkMode() {
       return currentTheme == ThemeMode.dark;
     }
@@ -31,4 +30,3 @@ class SettingsProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
