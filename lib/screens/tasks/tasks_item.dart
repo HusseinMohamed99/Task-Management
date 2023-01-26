@@ -9,6 +9,7 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksItem extends StatelessWidget {
   TasksModel tasks;
@@ -40,11 +41,8 @@ class TasksItem extends StatelessWidget {
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 icon: Icons.delete_forever,
-                label: 'Delete',
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(18),
-                  bottomLeft: Radius.circular(18),
-                ),
+                label: AppLocalizations.of(context)!.delete,
+                borderRadius: const BorderRadius.all(Radius.circular(18),),
               ),
             ],
           ),
@@ -97,7 +95,8 @@ class TasksItem extends StatelessWidget {
                     provider.refreshApp();
                   },
                   child: tasks.isDone
-                      ? Text('   Done! ✅  ',
+                      ? Text(
+                      AppLocalizations.of(context)!.condition,
                           style: Theme.of(context)
                               .textTheme
                               .headline2!
@@ -130,10 +129,10 @@ class TasksItem extends StatelessWidget {
   void deleteTask(BuildContext context) {
     MyDialog.showMessage(
       context,
-      'Are You Sure .  Delete This Task ?',
-      posActionTitle: 'Yes',
+      AppLocalizations.of(context)!.delete_task,
+      posActionTitle: AppLocalizations.of(context)!.yes,
       posAction: () {
-        MyDialog.showLoadingDialog(context, 'Loading');
+        MyDialog.showLoadingDialog(context, AppLocalizations.of(context)!.loading);
         MyDataBase.deleteTask(tasks).then((value) {
           MyDialog.hideDialog(context);
           // MyDialog.showMessage(context, 'Task Deleted Successfully',posActionTitle: 'Ok');
@@ -141,7 +140,7 @@ class TasksItem extends StatelessWidget {
           MyDialog.hideDialog(context);
         });
       },
-      negActionTitle: 'Cancel',
+      negActionTitle: AppLocalizations.of(context)!.cancel,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({super.key});
@@ -25,8 +26,8 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                 settingsProvider.changeLanguage('en');
               },
               child: settingsProvider.currentLanguage == 'en'
-                  ? getSelectedItem ('english')
-                  : getUnselectedItem ('english')),
+              ? getSelectedItem (AppLocalizations.of(context)!.english,)
+              : getUnselectedItem (AppLocalizations.of(context)!.english,)),
           const SizedBox(
             height: 12,
           ),
@@ -34,9 +35,9 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               onTap: () {
                 settingsProvider.changeLanguage('ar');
               },
-              child: settingsProvider.currentLanguage == 'ar'
-                  ? getSelectedItem('arabic')
-                  : getUnselectedItem('arabic'))
+              child: settingsProvider.currentLanguage == 'ar' ?
+              getSelectedItem (AppLocalizations.of(context)!.arabic,)
+                  : getUnselectedItem (AppLocalizations.of(context)!.arabic,)),
         ],
       ),
     );

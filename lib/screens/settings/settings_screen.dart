@@ -4,6 +4,7 @@ import 'package:task_management/shared/components/language_bottom_sheet.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/components/theme_bottom_sheet.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: const EdgeInsets.all(12),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Text(
-         'theme',
+          AppLocalizations.of(context)!.theme,
           style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold,fontSize: 20),
         ),
         const Space(width: 0, height: 8),
@@ -37,8 +38,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Border.all(color: Theme.of(context).accentColor, width: 1)),
             child: Text(
               settingsProvider.isDarkMode()
-                  ?'dark'
-                  : 'light',
+                  ? AppLocalizations.of(context)!.dark
+                  : AppLocalizations.of(context)!.light,
               style:settingsProvider.currentLanguage =='en' ?  Theme.of(context).textTheme.headline4 :  Theme.of(context).textTheme.headline4!.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
 
             ),
@@ -48,7 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           height: 24,
         ),
         Text(
-         'language',
+          AppLocalizations.of(context)!.language,
           style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold,fontSize: 20),
         ),
         const SizedBox(
@@ -66,9 +67,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Border.all(color: Theme.of(context).accentColor, width: 1)),
             child: Text(
               settingsProvider.currentLanguage =='en'
-                  ? 'english'
-                  : 'arabic',
-
+                  ? AppLocalizations.of(context)!.english
+                  : AppLocalizations.of(context)!.arabic,
               style:settingsProvider.currentLanguage =='en' ?  Theme.of(context).textTheme.headline4 :  Theme.of(context).textTheme.headline4!.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
             ),
           ),

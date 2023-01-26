@@ -8,6 +8,7 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTask extends StatefulWidget {
    TasksModel tasks;
@@ -40,7 +41,7 @@ class _EditTaskState extends State<EditTask> {
           },
         ),
         title: Text(
-          'Task Management',
+          AppLocalizations.of(context)!.title,
           style: GoogleFonts.poppins(fontSize: 26, fontWeight: FontWeight.bold),
         ),
         centerTitle: false,
@@ -63,7 +64,7 @@ class _EditTaskState extends State<EditTask> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Add New Tasks',
+                        AppLocalizations.of(context)!.edit,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                             textStyle: Theme.of(context)
@@ -76,15 +77,15 @@ class _EditTaskState extends State<EditTask> {
                         initialValue: widget.tasks.title,
                         keyboardType: TextInputType.text,
                         decoration:  InputDecoration(
-                            labelText: 'Title',
+                            labelText: AppLocalizations.of(context)!.title_,
                             labelStyle: TextStyle(color: provider.isDarkMode() ?  Colors.white : Colors.black),
                             prefixIcon: Icon(Icons.edit,color: provider.isDarkMode() ?  Colors.white : Colors.black)),
                         validator: (value) {
-                          if (value!.trim().isEmpty || value.trim() == null) {
-                            return 'Please Enter a valid Title';
+                          if (value!.trim().isEmpty) {
+                            return AppLocalizations.of(context)!.valid_title;
                           }
                           if (value.length < 3) {
-                            return 'Title should be at least a 3 characters';
+                            return AppLocalizations.of(context)!.title_length;
                           }
                           return null;
                         },
@@ -101,14 +102,14 @@ class _EditTaskState extends State<EditTask> {
                         keyboardType: TextInputType.text,
                         decoration:  InputDecoration(
                           labelStyle: TextStyle(color: provider.isDarkMode() ?  Colors.white : Colors.black),
-                            labelText: 'Description',
+                            labelText: AppLocalizations.of(context)!.desc,
                             prefixIcon: Icon(Icons.description,color: provider.isDarkMode() ?  Colors.white : Colors.black)),
                         validator: (value) {
-                          if (value!.trim().isEmpty || value.trim() == null) {
-                            return 'Please Enter a valid Description';
+                          if (value!.trim().isEmpty) {
+                            return AppLocalizations.of(context)!.valid_desc;
                           }
                           if (value.length < 3) {
-                            return 'Description should be at least a 3 characters';
+                            return AppLocalizations.of(context)!.desc_length;
                           }
                           return null;
                         },
@@ -127,7 +128,7 @@ class _EditTaskState extends State<EditTask> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Date',
+                                  AppLocalizations.of(context)!.date,
                                   style: GoogleFonts.poppins(
                                       textStyle: Theme.of(context)
                                           .textTheme
@@ -173,7 +174,7 @@ class _EditTaskState extends State<EditTask> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Time',
+                                  AppLocalizations.of(context)!.time,
                                   style: GoogleFonts.poppins(
                                       textStyle: Theme.of(context)
                                           .textTheme
@@ -226,7 +227,7 @@ class _EditTaskState extends State<EditTask> {
 
                             },
                             child: Text(
-                              'Save Changes',
+                              AppLocalizations.of(context)!.save,
                               style: GoogleFonts.poppins(
                                   textStyle: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white)),
                             )),

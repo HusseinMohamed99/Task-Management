@@ -10,10 +10,9 @@ import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 void main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -47,12 +46,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
-      //  AppLocalizations.delegate,
+       AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-     // supportedLocales: AppLocalizations.supportedLocales,
+     supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(settingsProvider.currentLanguage),
       home: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {

@@ -9,6 +9,7 @@ import 'package:task_management/shared/components/navigator.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksBottomSheet extends StatefulWidget {
   const TasksBottomSheet({super.key});
@@ -33,7 +34,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add New Tasks',
+              AppLocalizations.of(context)!.addtask,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 textStyle: Theme.of(context).textTheme.headline5!.copyWith(
@@ -48,7 +49,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
               controller: titleController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText: 'Enter Your Title',
+                  labelText:  AppLocalizations.of(context)!.title_,
                   labelStyle: TextStyle(
                     color: provider.isDarkMode() ? Colors.white : Colors.black,
                   ),
@@ -56,11 +57,11 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                       color:
                           provider.isDarkMode() ? Colors.white : Colors.black)),
               validator: (value) {
-                if (value!.trim().isEmpty || value == null) {
-                  return 'Please Enter a valid Title';
+                if (value!.trim().isEmpty) {
+                  return AppLocalizations.of(context)!.valid_title;
                 }
                 if (value.length < 3) {
-                  return 'Title should be at least a 3 characters';
+                  return AppLocalizations.of(context)!.title_length;
                 }
                 return null;
               },
@@ -74,7 +75,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
               minLines: 1,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText: 'Description',
+                  labelText:  AppLocalizations.of(context)!.desc,
                   labelStyle: TextStyle(
                       color:
                           provider.isDarkMode() ? Colors.white : Colors.black),
@@ -82,11 +83,11 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                       color:
                           provider.isDarkMode() ? Colors.white : Colors.black)),
               validator: (value) {
-                if (value!.trim().isEmpty || value == null) {
-                  return 'Please Enter a valid Description';
+                if (value!.trim().isEmpty) {
+                  return AppLocalizations.of(context)!.valid_desc;
                 }
                 if (value.length < 3) {
-                  return 'Description should be at least a 3 characters';
+                  return AppLocalizations.of(context)!.desc_length;
                 }
                 return null;
               },
@@ -103,7 +104,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Date',
+                          AppLocalizations.of(context)!.date,
                           style: GoogleFonts.poppins(
                               textStyle: Theme.of(context)
                                   .textTheme
@@ -157,7 +158,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Time',
+                          AppLocalizations.of(context)!.time,
                           style: GoogleFonts.poppins(
                               textStyle: Theme.of(context)
                                   .textTheme
@@ -203,7 +204,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             TextButton(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 onPressed: () {
@@ -212,7 +213,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                   titleController.clear();
                 },
                 child: Text(
-                  'Submit',
+                  AppLocalizations.of(context)!.add,
                   style: GoogleFonts.poppins(
                       textStyle: Theme.of(context).textTheme.headline6),
                 )),
@@ -233,18 +234,18 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
       //timeOfDay: selectedTime,
     );
 
-    MyDialog.showLoadingDialog(context, 'Loading...');
+    MyDialog.showLoadingDialog(context, AppLocalizations.of(context)!.loading);
     try {
       await MyDataBase.insertTasks(tasks);
       MyDialog.hideDialog(context);
-      MyDialog.showMessage(context, 'Task Inserted Successfully',
-          posActionTitle: 'Ok', posAction: () {
+      MyDialog.showMessage(context, AppLocalizations.of(context)!.task_insert,
+          posActionTitle: AppLocalizations.of(context)!.ok, posAction: () {
         pop(context);
       }, isDismissible: false);
     } catch (error) {
       MyDialog.hideDialog(context);
-      MyDialog.showMessage(context, 'Error Inserting Task',
-          posActionTitle: 'Try Again', posAction: () {
+      MyDialog.showMessage(context,  AppLocalizations.of(context)!.task_error,
+          posActionTitle:  AppLocalizations.of(context)!.try_again, posAction: () {
         insertTasks();
       }, isDismissible: false);
     }

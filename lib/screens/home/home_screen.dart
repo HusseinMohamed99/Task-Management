@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:task_management/screens/settings/settings_screen.dart';
 import 'package:task_management/screens/tasks/tasks_screen.dart';
 import 'package:task_management/shared/components/tasks_bottom_sheet.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,11 +18,10 @@ int currentIndex = 0 ;
 
   @override
   Widget build(BuildContext context) {
-    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Task Management',
+        title: Text(AppLocalizations.of(context)!.title,
         style: GoogleFonts.poppins(
           fontSize: 26,
           fontWeight: FontWeight.bold
@@ -56,7 +54,6 @@ int currentIndex = 0 ;
           currentIndex: currentIndex,
           items:
            const [
-
             BottomNavigationBarItem(icon: Icon(Icons.list),label: ''),
             BottomNavigationBarItem(icon: Icon(Icons.settings),label: ''),
           ],

@@ -27,8 +27,7 @@ class ThemeApp {
           fontSize: 30,
           color: lightPrimary,
         ),
-
-        subtitle2: TextStyle(fontSize: 14, color:Colors.grey)),
+        subtitle2: TextStyle(fontSize: 14, color: Colors.grey)),
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: true,
@@ -45,21 +44,21 @@ class ThemeApp {
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.transparent,
         elevation: 0,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedIconTheme: IconThemeData(size: 46, color: lightPrimary),
-        unselectedIconTheme: IconThemeData(size: 40, color: grey),
+        selectedIconTheme: IconThemeData(size: 35, color: lightPrimary),
+        unselectedIconTheme: IconThemeData(size: 30, color: grey),
         selectedLabelStyle: TextStyle(color: Colors.black),
         selectedItemColor: Colors.black),
   );
 
   static final ThemeData darkTheme = ThemeData(
-
     scaffoldBackgroundColor: scaffoldBackgroundColorDark,
     primaryColor: darkPrimary,
     bottomSheetTheme: const BottomSheetThemeData(
-        backgroundColor: darkPrimary,
+        backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(18), topRight: Radius.circular(18)))),
@@ -81,11 +80,11 @@ class ThemeApp {
           color: Colors.white, fontSize: 32, fontWeight: FontWeight.w500),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: darkBottom,
+        backgroundColor: darkBottom,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedIconTheme: IconThemeData(size: 46, color: lightPrimary),
-        unselectedIconTheme: IconThemeData(size: 40, color: grey),
+        selectedIconTheme: IconThemeData(size: 35, color: lightPrimary),
+        unselectedIconTheme: IconThemeData(size: 30, color: grey),
         selectedLabelStyle: TextStyle(color: Colors.black),
         selectedItemColor: Colors.black),
   );

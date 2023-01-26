@@ -2,18 +2,20 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:task_management/model/task_model.dart';
 import 'package:task_management/screens/tasks/tasks_item.dart';
 import 'package:task_management/shared/adaptive/indicator.dart';
 import 'package:task_management/shared/components/indicator.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
+import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
   static const String routeName = 'TasksScreen';
-
   @override
   State<TasksScreen> createState() => _TasksScreenState();
 }
@@ -24,10 +26,10 @@ class _TasksScreenState extends State<TasksScreen> {
     // TODO: implement initState
     super.initState();
   }
-
   var selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Column(
       children: [
         Stack(
@@ -52,8 +54,7 @@ class _TasksScreenState extends State<TasksScreen> {
               activeBackgroundDayColor: Colors.white,
               dotsColor: Theme.of(context).primaryColor,
               selectableDayPredicate: (date) => true,
-              locale: 'en_ISO',
-
+              locale: settingsProvider.currentLanguage == 'en' ? 'en_ISO' : 'ar',
             ),
           ],
         ),
@@ -69,13 +70,12 @@ class _TasksScreenState extends State<TasksScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Error Loading Tasks,'
-                          'Try Again Later'),
+                       Text(AppLocalizations.of(context)!.error_loading),
                       MaterialButton(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         onPressed: () {},
                         child: Text(
-                          'Try Again',
+                          AppLocalizations.of(context)!.try_again,
                           style: GoogleFonts.poppins(
                               textStyle: Theme.of(context).textTheme.headline6),
                         ),
@@ -95,7 +95,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       ),
                       const Space(width: 0, height: 20),
                       Text(
-                        'No Tasks Yet!,',
+                        AppLocalizations.of(context)!.no_task,
                         style: GoogleFonts.roboto(
                           fontSize: 20,
                           color: Colors.grey,
