@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:task_management/shared/components/language_bottom_sheet.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/components/theme_bottom_sheet.dart';
@@ -23,12 +24,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Text(
           AppLocalizations.of(context)!.theme,
-          style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold,fontSize: 20),
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const Space(width: 0, height: 8),
         InkWell(
           onTap: () {
-           showThemeBottomSheet();
+            showThemeBottomSheet();
           },
           child: Container(
             padding: const EdgeInsets.all(12),
@@ -40,8 +44,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               settingsProvider.isDarkMode()
                   ? AppLocalizations.of(context)!.dark
                   : AppLocalizations.of(context)!.light,
-              style:settingsProvider.currentLanguage =='en' ?  Theme.of(context).textTheme.headline4 :  Theme.of(context).textTheme.headline4!.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
-
+              style: settingsProvider.currentLanguage == 'en'
+                  ? Theme.of(context).textTheme.headline6
+                  : Theme.of(context).textTheme.headline6!.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
             ),
           ),
         ),
@@ -50,7 +58,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         Text(
           AppLocalizations.of(context)!.language,
-          style: Theme.of(context).textTheme.subtitle2!.copyWith(fontWeight: FontWeight.bold,fontSize: 20),
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const SizedBox(
           height: 8,
@@ -66,10 +77,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 border:
                     Border.all(color: Theme.of(context).accentColor, width: 1)),
             child: Text(
-              settingsProvider.currentLanguage =='en'
+              settingsProvider.currentLanguage == 'en'
                   ? AppLocalizations.of(context)!.english
                   : AppLocalizations.of(context)!.arabic,
-              style:settingsProvider.currentLanguage =='en' ?  Theme.of(context).textTheme.headline4 :  Theme.of(context).textTheme.headline4!.copyWith(fontSize: 20,fontWeight: FontWeight.bold),
+              style: settingsProvider.currentLanguage == 'en'
+                  ? Theme.of(context).textTheme.headline6
+                  : Theme.of(context).textTheme.headline6!.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        Text(
+          'GitHub',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        InkWell(
+          onTap: () {
+            Share.share('''*Task-Management*\n
+u can develop it from my github github.com/HusseinMohamed99''');
+          },
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                border:
+                    Border.all(color: Theme.of(context).accentColor, width: 1)),
+            child: Text(
+              'GitHub',
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
         ),

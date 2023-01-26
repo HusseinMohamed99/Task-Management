@@ -26,16 +26,16 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
                 settingsProvider.changeTheme(ThemeMode.light);
               },
               child: settingsProvider.isDarkMode()
-                  ? getUnselectedItem('light',)
-                  : getSelectedItem('light',)),
+                  ? getUnselectedItem('Light',)
+                  : getSelectedItem('Light',)),
         const Space(width: 0, height: 12),
           InkWell(
               onTap: () {
                 settingsProvider.changeTheme(ThemeMode.dark);
               },
               child: settingsProvider.isDarkMode()
-                  ? getSelectedItem('dark',)
-                  : getUnselectedItem('dark',))
+                  ? getSelectedItem('Dark',)
+                  : getUnselectedItem('Dark',))
         ],
       ),
     );
