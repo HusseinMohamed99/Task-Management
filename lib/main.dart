@@ -3,61 +3,85 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management/screens/desktop/desktop_screen.dart';
 import 'package:task_management/screens/home/home_screen.dart';
-import 'package:task_management/screens/settings/settings_screen.dart';
-import 'package:task_management/screens/tasks/tasks_screen.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
 import 'firebase_options.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() async{
- await WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  await WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(  ChangeNotifierProvider(
+
+  runApp(
+    ChangeNotifierProvider(
       create: (buildContext) => SettingsProvider(),
-      child:Builder(
-    builder: (context) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-      return const MyApp();
-    },
-  ),),);
+      child: Builder(
+        builder: (context) {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+          return MyApp();
+        },
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
+  late SettingsProvider settingsProvider;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    settingsProvider = Provider.of<SettingsProvider>(context);
+    getValueFromPref();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+      //  AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+     // supportedLocales: AppLocalizations.supportedLocales,
+      locale: Locale(settingsProvider.currentLanguage),
       home: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          if (kDebugMode) {
-            print(constraints.minWidth.toInt());
-          }
-          if (constraints.minWidth.toInt() <= 560) {
-            return const HomeScreen();
-          }
-          return const DesktopScreen();
-        }),
+          builder: (BuildContext context, BoxConstraints constraints) {
+        if (kDebugMode) {
+          print(constraints.minWidth.toInt());
+        }
+        if (constraints.minWidth.toInt() <= 560) {
+          return const HomeScreen();
+        }
+        return const DesktopScreen();
+      }),
       theme: ThemeApp.lightTheme,
       darkTheme: ThemeApp.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: settingsProvider.currentTheme,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
-        TasksScreen.routeName: (_) => const TasksScreen(),
-        SettingsScreen.routeName: (_) => const SettingsScreen(),
       },
       initialRoute: '/',
-
     );
+  }
+
+  getValueFromPref() async {
+    final pref = await SharedPreferences.getInstance();
+    settingsProvider.changeLanguage(pref.getString("Lang") ?? "Light");
+
+    if (pref.getString("Theme") == "Light") {
+      settingsProvider.changeTheme(ThemeMode.light);
+    } else if (pref.getString("Theme") == "Dark") {
+      settingsProvider.changeTheme(ThemeMode.dark);
+    }
   }
 }

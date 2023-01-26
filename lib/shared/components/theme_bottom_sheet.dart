@@ -26,16 +26,16 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
                 settingsProvider.changeTheme(ThemeMode.light);
               },
               child: settingsProvider.isDarkMode()
-                  ? getUnselectedItem('AppLocalizations.of(context)!.light',)
-                  : getSelectedItem('AppLocalizations.of(context)!.light',)),
+                  ? getUnselectedItem('light',)
+                  : getSelectedItem('light',)),
         const Space(width: 0, height: 12),
           InkWell(
               onTap: () {
                 settingsProvider.changeTheme(ThemeMode.dark);
               },
               child: settingsProvider.isDarkMode()
-                  ? getSelectedItem('AppLocalizations.of(context)!.dark',)
-                  : getUnselectedItem('AppLocalizations.of(context)!.dark',))
+                  ? getSelectedItem('dark',)
+                  : getUnselectedItem('dark',))
         ],
       ),
     );

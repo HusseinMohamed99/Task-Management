@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:task_management/model/task_model.dart';
+import 'package:task_management/shared/adaptive/dialog.dart';
+import 'package:task_management/shared/components/date.dart';
+import 'package:task_management/shared/components/navigator.dart';
 import 'package:task_management/shared/components/size_box.dart';
+import 'package:task_management/shared/database/my_database.dart';
+import 'package:task_management/shared/providers/settings_provider.dart';
 
 class TasksBottomSheet extends StatefulWidget {
   const TasksBottomSheet({super.key});
@@ -11,74 +18,269 @@ class TasksBottomSheet extends StatefulWidget {
 }
 
 class _TasksBottomSheetState extends State<TasksBottomSheet> {
+  var formKey = GlobalKey<FormState>();
+  var titleController = TextEditingController();
+  var descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     return Container(
       padding: const EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Add New Tasks',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-                textStyle: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(color: Colors.black)),
-          ),
-          TextFormField(
-            keyboardType: TextInputType.text,
-            decoration: const InputDecoration(labelText: 'Enter your task'),
-          ),
-          const Space(width: 0, height: 12),
-          TextFormField(
-            maxLines: 6,
-            minLines: 1,
-            keyboardType: TextInputType.text,
-            decoration: const InputDecoration(labelText: 'Description'),
-          ),
-          Text(
-            'Select Date',
-            style: GoogleFonts.poppins(
-                textStyle: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .copyWith(color: Colors.black)),
-          ),
-          InkWell(
-            onTap: () {
-              buildShowDatePicker(context);
-            },
-            child: Text(
-              '${DateTime.now().year} - ${DateTime.now().month} - ${DateTime.now().day}',
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Add New Tasks',
+              textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .copyWith(color: Theme.of(context).primaryColor)),
+                textStyle: Theme.of(context).textTheme.headline5!.copyWith(
+                      color:
+                          provider.isDarkMode() ? Colors.white : Colors.black,
+                    ),
+              ),
             ),
-          ),
-          const Spacer(),
-          TextButton(
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-              onPressed: (){}, child: Text('Submit',style: GoogleFonts.poppins(
-              textStyle: Theme.of(context)
-                  .textTheme
-                  .headline6),))
-        ],
+            TextFormField(
+              style: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black),
+              controller: titleController,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                  labelText: 'Enter Your Title',
+                  labelStyle: TextStyle(
+                    color: provider.isDarkMode() ? Colors.white : Colors.black,
+                  ),
+                  prefixIcon: Icon(Icons.edit,
+                      color:
+                          provider.isDarkMode() ? Colors.white : Colors.black)),
+              validator: (value) {
+                if (value!.trim().isEmpty || value == null) {
+                  return 'Please Enter a valid Title';
+                }
+                if (value.length < 3) {
+                  return 'Title should be at least a 3 characters';
+                }
+                return null;
+              },
+            ),
+            const Space(width: 0, height: 12),
+            TextFormField(
+              style: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black),
+              controller: descriptionController,
+              maxLines: 6,
+              minLines: 1,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                  labelText: 'Description',
+                  labelStyle: TextStyle(
+                      color:
+                          provider.isDarkMode() ? Colors.white : Colors.black),
+                  prefixIcon: Icon(Icons.description,
+                      color:
+                          provider.isDarkMode() ? Colors.white : Colors.black)),
+              validator: (value) {
+                if (value!.trim().isEmpty || value == null) {
+                  return 'Please Enter a valid Description';
+                }
+                if (value.length < 3) {
+                  return 'Description should be at least a 3 characters';
+                }
+                return null;
+              },
+            ),
+            const Space(width: 0, height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      buildShowDatePicker(context);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Date',
+                          style: GoogleFonts.poppins(
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      color: provider.isDarkMode()
+                                          ? Colors.white
+                                          : Colors.black)),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(left: 14.0),
+                          height: 52,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.0),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                DateTimeUtils.formatTasksDate(selectedDate),
+                                style: GoogleFonts.poppins(
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(
+                                        color: Colors.grey,
+                                      ),
+                                ),
+                              ),
+                              Icon(Icons.date_range,
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Space(width: 10, height: 0),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      buildShowTimePicker(context);
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Time',
+                          style: GoogleFonts.poppins(
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      color: provider.isDarkMode()
+                                          ? Colors.white
+                                          : Colors.black)),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(left: 14.0),
+                          height: 52,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.0),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                selectedTime.format(context),
+                                style: GoogleFonts.poppins(
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(
+                                        color: Colors.grey,
+                                      ),
+                                ),
+                              ),
+                              Icon(Icons.watch_later_outlined,
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            TextButton(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                onPressed: () {
+                  insertTasks();
+                  descriptionController.clear();
+                  titleController.clear();
+                },
+                child: Text(
+                  'Submit',
+                  style: GoogleFonts.poppins(
+                      textStyle: Theme.of(context).textTheme.headline6),
+                )),
+          ],
+        ),
       ),
     );
   }
 
- void buildShowDatePicker(BuildContext context) {
-     showDatePicker(
-              initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
-              lastDate: DateTime.now().add(const Duration(days: 365)),
-              context: context,
+  void insertTasks() async {
+    if (formKey.currentState?.validate() == false) {
+      return;
+    }
+    TasksModel tasks = TasksModel(
+      title: titleController.text,
+      description: descriptionController.text,
+      dateTime: selectedDate,
+      //timeOfDay: selectedTime,
+    );
 
-            );
+    MyDialog.showLoadingDialog(context, 'Loading...');
+    try {
+      await MyDataBase.insertTasks(tasks);
+      MyDialog.hideDialog(context);
+      MyDialog.showMessage(context, 'Task Inserted Successfully',
+          posActionTitle: 'Ok', posAction: () {
+        pop(context);
+      }, isDismissible: false);
+    } catch (error) {
+      MyDialog.hideDialog(context);
+      MyDialog.showMessage(context, 'Error Inserting Task',
+          posActionTitle: 'Try Again', posAction: () {
+        insertTasks();
+      }, isDismissible: false);
+    }
+  }
+
+  var selectedDate = DateTime.now();
+  void buildShowDatePicker(BuildContext context) async {
+    var userSelectedDate = await showDatePicker(
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+      context: context,
+    );
+    if (userSelectedDate == null) {
+      return;
+    }
+
+    setState(() {
+      selectedDate = userSelectedDate;
+    });
+  }
+
+  var selectedTime = TimeOfDay.now();
+  void buildShowTimePicker(BuildContext context) async {
+    var userSelectedTime = await showTimePicker(
+      initialEntryMode: TimePickerEntryMode.dial,
+      initialTime: selectedTime,
+      context: context,
+    );
+    if (userSelectedTime == null) {
+      return;
+    }
+
+    setState(() {
+      selectedTime = userSelectedTime;
+    });
   }
 
   Widget getSelectedItem(String title) {

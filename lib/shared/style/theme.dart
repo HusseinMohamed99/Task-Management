@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class ThemeApp {
   static const Color lightPrimary = Color(0xff5D9CEC);
   static const Color darkPrimary = Color(0xff060E1E);
+  static const Color darkBottom = Color(0xff141922);
   static const Color grey = Color(0xffC8C9CB);
   static const Color scaffoldBackgroundColorLight = Color(0xffDFECDB);
   static const Color scaffoldBackgroundColorDark = Color(0xff060E1E);
@@ -44,7 +45,6 @@ class ThemeApp {
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.transparent,
         elevation: 0,
         showSelectedLabels: true,
         showUnselectedLabels: false,
@@ -55,6 +55,7 @@ class ThemeApp {
   );
 
   static final ThemeData darkTheme = ThemeData(
+
     scaffoldBackgroundColor: scaffoldBackgroundColorDark,
     primaryColor: darkPrimary,
     bottomSheetTheme: const BottomSheetThemeData(
@@ -74,12 +75,13 @@ class ThemeApp {
         subtitle2: TextStyle(fontSize: 14, color: Colors.white)),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
-      color: Colors.transparent,
+      color: lightPrimary,
       elevation: 0,
       titleTextStyle: TextStyle(
           color: Colors.white, fontSize: 32, fontWeight: FontWeight.w500),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: darkBottom,
         showSelectedLabels: true,
         showUnselectedLabels: false,
         selectedIconTheme: IconThemeData(size: 46, color: lightPrimary),

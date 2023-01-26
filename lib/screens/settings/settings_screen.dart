@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_management/shared/components/language_bottom_sheet.dart';
 import 'package:task_management/shared/components/size_box.dart';
+import 'package:task_management/shared/components/theme_bottom_sheet.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -25,7 +27,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const Space(width: 0, height: 8),
         InkWell(
           onTap: () {
-          //  showThemeBottomSheet();
+           showThemeBottomSheet();
           },
           child: Container(
             padding: const EdgeInsets.all(12),
@@ -54,7 +56,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         InkWell(
           onTap: () {
-           // showLanguageBottomSheet();
+            showLanguageBottomSheet();
           },
           child: Container(
             padding: const EdgeInsets.all(12),
@@ -75,19 +77,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // void showThemeBottomSheet() {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       builder: (buildContext) {
-  //         return const ThemeBottomSheet();
-  //       });
-  // }
+  void showThemeBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (buildContext) {
+          return const ThemeBottomSheet();
+        });
+  }
 
-  // void showLanguageBottomSheet() {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       builder: (buildContext) {
-  //         return const LanguageBottomSheet();
-  //       });
-  // }
+  void showLanguageBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (buildContext) {
+          return const LanguageBottomSheet();
+        });
+  }
 }

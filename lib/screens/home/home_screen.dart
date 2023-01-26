@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:task_management/screens/settings/settings_screen.dart';
 import 'package:task_management/screens/tasks/tasks_screen.dart';
 import 'package:task_management/shared/components/tasks_bottom_sheet.dart';
+import 'package:task_management/shared/providers/settings_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,15 +19,16 @@ int currentIndex = 0 ;
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('Task Management',
         style: GoogleFonts.poppins(
           fontSize: 26,
           fontWeight: FontWeight.bold
         ),),
         centerTitle: false,
-
       ),
       floatingActionButton: FloatingActionButton(
         shape: const StadiumBorder(
@@ -52,7 +55,8 @@ int currentIndex = 0 ;
           },
           currentIndex: currentIndex,
           items:
-          const [
+           const [
+
             BottomNavigationBarItem(icon: Icon(Icons.list),label: ''),
             BottomNavigationBarItem(icon: Icon(Icons.settings),label: ''),
           ],
@@ -63,8 +67,8 @@ int currentIndex = 0 ;
   }
   List<Widget> screens =
   [
-    TasksScreen(),
-    SettingsScreen(),
+     const TasksScreen(),
+    const SettingsScreen(),
   ];
 
 void showTasksBottomSheet() {
