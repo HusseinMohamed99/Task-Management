@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management/screens/desktop/desktop_screen.dart';
@@ -44,33 +45,42 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     settingsProvider = Provider.of<SettingsProvider>(context);
     getValueFromPref();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-       AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-     supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale(settingsProvider.currentLanguage),
-      home: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-        if (kDebugMode) {
-          print(constraints.minWidth.toInt());
-        }
-        if (constraints.minWidth.toInt() <= 560) {
-          return const HomeScreen();
-        }
-        return const DesktopScreen();
-      }),
-      theme: ThemeApp.lightTheme,
-      darkTheme: ThemeApp.darkTheme,
-      themeMode: settingsProvider.currentTheme,
-      routes: {
-        HomeScreen.routeName: (_) => const HomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context , child)
+      {
+        return MaterialApp(
+
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale(settingsProvider.currentLanguage),
+          home: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                if (kDebugMode) {
+                  print(constraints.minWidth.toInt());
+                }
+                if (constraints.minWidth.toInt() <= 560) {
+                  return const HomeScreen();
+                }
+                return const DesktopScreen();
+              }),
+          theme: ThemeApp.lightTheme,
+          darkTheme: ThemeApp.darkTheme,
+          themeMode: settingsProvider.currentTheme,
+          routes: {
+            HomeScreen.routeName: (_) => const HomeScreen(),
+          },
+          initialRoute: '/',
+        );
       },
-      initialRoute: '/',
     );
   }
 
