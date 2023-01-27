@@ -190,6 +190,57 @@ You can develop it from my GitHub https://github.com/HusseinMohamed99''');
             ),
           ),
         ),
+        const Space(width: 0, height: 24),
+        Text(
+          'WebSite',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        const Space(width: 0, height: 8),
+        Card(
+          color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Share.share('''*My Portfolio*\n
+You can connect with me from my Portfolio https://zaap.bio/HusseinMohamed''');
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      FontAwesomeIcons.envelope,
+                      size: 40,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Space(width: 10, height: 0),
+                  Text(
+                    'My Portfolio',
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.arrow_circle_down_sharp,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ]),
     );
   }
