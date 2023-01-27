@@ -154,7 +154,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                Share.share('''*Task_Management*\n
+                Share.share('''*Task-Management*\n
 You can develop it from my GitHub https://github.com/HusseinMohamed99''');
               },
               child: Row(
