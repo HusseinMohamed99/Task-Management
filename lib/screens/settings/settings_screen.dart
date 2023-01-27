@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:task_management/shared/components/language_bottom_sheet.dart';
@@ -6,6 +7,7 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/components/theme_bottom_sheet.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_management/shared/style/theme.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -30,26 +32,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
               .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         const Space(width: 0, height: 8),
-        InkWell(
-          onTap: () {
-            showThemeBottomSheet();
-          },
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                border:
-                    Border.all(color: Theme.of(context).accentColor, width: 1)),
-            child: Text(
-              settingsProvider.isDarkMode()
-                  ? AppLocalizations.of(context)!.dark
-                  : AppLocalizations.of(context)!.light,
-              style: settingsProvider.currentLanguage == 'en'
-                  ? Theme.of(context).textTheme.headline6
-                  : Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+        Card(
+          color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                showThemeBottomSheet();
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      FontAwesomeIcons.solidMoon,
+                      size: 50,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Space(width: 10, height: 0),
+                  Text(
+                    settingsProvider.isDarkMode()
+                        ? AppLocalizations.of(context)!.dark
+                        : AppLocalizations.of(context)!.light,
+                    style: settingsProvider.currentLanguage == 'en'
+                        ? Theme.of(context).textTheme.headline6
+                        : Theme.of(context).textTheme.headline6!.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.arrow_circle_down_sharp,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -66,26 +90,48 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const SizedBox(
           height: 8,
         ),
-        InkWell(
-          onTap: () {
-            showLanguageBottomSheet();
-          },
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                border:
-                    Border.all(color: Theme.of(context).accentColor, width: 1)),
-            child: Text(
-              settingsProvider.currentLanguage == 'en'
-                  ? AppLocalizations.of(context)!.english
-                  : AppLocalizations.of(context)!.arabic,
-              style: settingsProvider.currentLanguage == 'en'
-                  ? Theme.of(context).textTheme.headline6
-                  : Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+        Card(
+          color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                showLanguageBottomSheet();
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      FontAwesomeIcons.globe,
+                      size: 50,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Space(width: 10, height: 0),
+                  Text(
+                    settingsProvider.currentLanguage == 'en'
+                        ? AppLocalizations.of(context)!.english
+                        : AppLocalizations.of(context)!.arabic,
+                    style: settingsProvider.currentLanguage == 'en'
+                        ? Theme.of(context).textTheme.headline6
+                        : Theme.of(context).textTheme.headline6!.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.arrow_circle_down_sharp,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -102,23 +148,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const SizedBox(
           height: 8,
         ),
-        InkWell(
-          onTap: () {
-            Share.share('''*Task-Management*\n
-u can develop it from my github github.com/HusseinMohamed99''');
-          },
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                border:
-                    Border.all(color: Theme.of(context).accentColor, width: 1)),
-            child: Text(
-              'GitHub',
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+        Card(
+          color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Share.share('''*Task_Management*\n
+You can develop it from my GitHub https://github.com/HusseinMohamed99''');
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      FontAwesomeIcons.github,
+                      size: 50,
+                      color: Colors.black,
+                    ),
                   ),
+                  const Space(width: 10, height: 0),
+                  Text(
+                    'GitHub',
+                    style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const Spacer(),
+                  const Icon(
+                    Icons.arrow_circle_down_sharp,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
