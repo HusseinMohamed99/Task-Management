@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:task_management/shared/style/theme.dart';
 
 class TasksBottomSheet extends StatefulWidget {
   const TasksBottomSheet({super.key});
@@ -27,7 +29,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingsProvider>(context);
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12).r,
       child: Form(
         key: formKey,
         child: Column(
@@ -45,17 +47,21 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
             ),
             TextFormField(
               style: TextStyle(
-                  color: provider.isDarkMode() ? Colors.white : Colors.black),
+                color: provider.isDarkMode() ? Colors.white : Colors.black,
+              ),
               controller: titleController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText:  AppLocalizations.of(context)!.title_,
-                  labelStyle: TextStyle(
-                    color: provider.isDarkMode() ? Colors.white : Colors.black,
-                  ),
-                  prefixIcon: Icon(Icons.edit,
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black)),
+                labelText: AppLocalizations.of(context)!.title_,
+                labelStyle: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                ),
+                prefixIcon: Icon(
+                  size: 24.sp,
+                  Icons.edit,
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                ),
+              ),
               validator: (value) {
                 if (value!.trim().isEmpty) {
                   return AppLocalizations.of(context)!.valid_title;
@@ -66,22 +72,29 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                 return null;
               },
             ),
-            const Space(width: 0, height: 12),
+            Space(
+              width: 0,
+              height: 12.h,
+            ),
             TextFormField(
               style: TextStyle(
-                  color: provider.isDarkMode() ? Colors.white : Colors.black),
+                color: provider.isDarkMode() ? Colors.white : Colors.black,
+              ),
               controller: descriptionController,
               maxLines: 6,
               minLines: 1,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText:  AppLocalizations.of(context)!.desc,
-                  labelStyle: TextStyle(
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black),
-                  prefixIcon: Icon(Icons.description,
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black)),
+                labelText: AppLocalizations.of(context)!.desc,
+                labelStyle: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                ),
+                prefixIcon: Icon(
+                  size: 24.sp,
+                  Icons.description,
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                ),
+              ),
               validator: (value) {
                 if (value!.trim().isEmpty) {
                   return AppLocalizations.of(context)!.valid_desc;
@@ -92,7 +105,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                 return null;
               },
             ),
-            const Space(width: 0, height: 20),
+            Space(width: 0, height: 20.h),
             Row(
               children: [
                 Expanded(
@@ -106,23 +119,26 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                         Text(
                           AppLocalizations.of(context)!.date,
                           style: GoogleFonts.poppins(
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline6!
-                                  .copyWith(
+                            textStyle:
+                                Theme.of(context).textTheme.headline6!.copyWith(
                                       color: provider.isDarkMode()
                                           ? Colors.white
-                                          : Colors.black)),
+                                          : Colors.black,
+                                    ),
+                          ),
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 8.0),
-                          padding: const EdgeInsets.only(left: 14.0),
-                          height: 52,
+                          margin: const EdgeInsets.only(top: 8.0).r,
+                          padding: const EdgeInsets.only(left: 14.0).r,
+                          height: 52.h,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.grey, width: 1.0),
-                              borderRadius: BorderRadius.circular(12)),
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 1.0.w,
+                            ),
+                            borderRadius: BorderRadius.circular(12).r,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -137,10 +153,13 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                       ),
                                 ),
                               ),
-                              Icon(Icons.date_range,
-                                  color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black),
+                              Icon(
+                                Icons.date_range,
+                                color: provider.isDarkMode()
+                                    ? Colors.white
+                                    : Colors.black,
+                                size: 24.sp,
+                              ),
                             ],
                           ),
                         ),
@@ -148,7 +167,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                     ),
                   ),
                 ),
-                const Space(width: 10, height: 0),
+                Space(width: 10.w, height: 0),
                 Expanded(
                   child: InkWell(
                     onTap: () {
@@ -160,23 +179,25 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                         Text(
                           AppLocalizations.of(context)!.time,
                           style: GoogleFonts.poppins(
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline6!
-                                  .copyWith(
-                                      color: provider.isDarkMode()
-                                          ? Colors.white
-                                          : Colors.black)),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(
+                                    color: provider.isDarkMode()
+                                        ? Colors.white
+                                        : Colors.black),
+                          ),
                         ),
                         Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 8.0),
-                          padding: const EdgeInsets.only(left: 14.0),
+                          margin: const EdgeInsets.only(top: 8.0).r,
+                          padding: const EdgeInsets.only(left: 14.0).r,
                           height: 52,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.grey, width: 1.0),
-                              borderRadius: BorderRadius.circular(12)),
+                            border:
+                                Border.all(color: Colors.grey, width: 1.0.w),
+                            borderRadius: BorderRadius.circular(12).r,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -191,10 +212,13 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                       ),
                                 ),
                               ),
-                              Icon(Icons.watch_later_outlined,
-                                  color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black),
+                              Icon(
+                                Icons.watch_later_outlined,
+                                color: provider.isDarkMode()
+                                    ? Colors.white
+                                    : Colors.black,
+                                size: 24.sp,
+                              ),
                             ],
                           ),
                         ),
@@ -215,7 +239,8 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                 child: Text(
                   AppLocalizations.of(context)!.add,
                   style: GoogleFonts.poppins(
-                      textStyle: Theme.of(context).textTheme.headline6),
+                    textStyle: Theme.of(context).textTheme.headline6,
+                  ),
                 )),
           ],
         ),
@@ -231,7 +256,6 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
       title: titleController.text,
       description: descriptionController.text,
       dateTime: selectedDate,
-      //timeOfDay: selectedTime,
     );
 
     MyDialog.showLoadingDialog(context, AppLocalizations.of(context)!.loading);
@@ -244,10 +268,15 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
       }, isDismissible: false);
     } catch (error) {
       MyDialog.hideDialog(context);
-      MyDialog.showMessage(context,  AppLocalizations.of(context)!.task_error,
-          posActionTitle:  AppLocalizations.of(context)!.try_again, posAction: () {
-        insertTasks();
-      }, isDismissible: false);
+      MyDialog.showMessage(
+        context,
+        AppLocalizations.of(context)!.task_error,
+        posActionTitle: AppLocalizations.of(context)!.try_again,
+        posAction: () {
+          insertTasks();
+        },
+        isDismissible: false,
+      );
     }
   }
 
@@ -256,7 +285,9 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
     var userSelectedDate = await showDatePicker(
       initialDate: selectedDate,
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
+      lastDate: DateTime.now().add(
+        const Duration(days: 365),
+      ),
       context: context,
     );
     if (userSelectedDate == null) {
@@ -290,14 +321,14 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
       children: [
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .headline4
-              ?.copyWith(color: Theme.of(context).accentColor),
+          style: Theme.of(context).textTheme.headline4?.copyWith(
+                color: ThemeApp.secondaryColor,
+              ),
         ),
         Icon(
           FontAwesomeIcons.circleCheck,
-          color: Theme.of(context).accentColor,
+          color: ThemeApp.secondaryColor,
+          size: 24.sp,
         )
       ],
     );

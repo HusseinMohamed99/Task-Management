@@ -1,6 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:task_management/model/task_model.dart';
@@ -34,11 +35,19 @@ class _TasksScreenState extends State<TasksScreen> {
       children: [
         Stack(
           children: [
-            Container(color: ThemeApp.lightPrimary,width: double.infinity,height: 85,),
+            Container(
+              color: ThemeApp.lightPrimary,
+              width: double.infinity,
+              height: 85.h,
+            ),
             CalendarTimeline(
               initialDate: selectedDate,
-              firstDate: DateTime.now().subtract(const Duration(days: 365)),
-              lastDate: DateTime.now().add(const Duration(days: 365)),
+              firstDate: DateTime.now().subtract(
+                const Duration(days: 365),
+              ),
+              lastDate: DateTime.now().add(
+                const Duration(days: 365),
+              ),
               onDateSelected: (date) {
                 if (date == null) {
                   return;
@@ -47,14 +56,15 @@ class _TasksScreenState extends State<TasksScreen> {
                   selectedDate = date;
                 });
               },
-              leftMargin: 14,
+              leftMargin: 14.r,
               monthColor: Colors.black,
               dayColor: Colors.black,
               activeDayColor: Theme.of(context).primaryColor,
               activeBackgroundDayColor: Colors.white,
               dotsColor: Theme.of(context).primaryColor,
               selectableDayPredicate: (date) => true,
-              locale: settingsProvider.currentLanguage == 'en' ? 'en_ISO' : 'ar',
+              locale:
+                  settingsProvider.currentLanguage == 'en' ? 'en_ISO' : 'ar',
             ),
           ],
         ),
@@ -63,21 +73,28 @@ class _TasksScreenState extends State<TasksScreen> {
             stream: MyDataBase.getTasks(selectedDate),
             builder: (buildContext, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: AdaptiveIndicator(os: getOs()));
+                return Center(
+                  child: AdaptiveIndicator(
+                    os: getOs(),
+                  ),
+                );
               }
               if (snapshot.hasError) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       Text(AppLocalizations.of(context)!.error_loading),
+                      Text(
+                        AppLocalizations.of(context)!.error_loading,
+                      ),
                       MaterialButton(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         onPressed: () {},
                         child: Text(
                           AppLocalizations.of(context)!.try_again,
                           style: GoogleFonts.poppins(
-                              textStyle: Theme.of(context).textTheme.headline6),
+                            textStyle: Theme.of(context).textTheme.headline6,
+                          ),
                         ),
                       ),
                     ],
@@ -93,11 +110,14 @@ class _TasksScreenState extends State<TasksScreen> {
                         'assets/images/search.png',
                         color: Colors.grey,
                       ),
-                      const Space(width: 0, height: 20),
+                      Space(
+                        width: 0,
+                        height: 20.h,
+                      ),
                       Text(
                         AppLocalizations.of(context)!.no_task,
                         style: GoogleFonts.roboto(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           color: Colors.grey,
                         ),
                       ),
@@ -105,7 +125,11 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 );
               }
-              var tasks = snapshot.data?.docs.map((doc) => doc.data()).toList();
+              var tasks = snapshot.data?.docs
+                  .map(
+                    (doc) => doc.data(),
+                  )
+                  .toList();
               return ListView.builder(
                 itemBuilder: (_, index) {
                   return TasksItem(tasks![index]);
@@ -119,23 +143,3 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 }
-
-// class TasksProvider extends ChangeNotifier
-// {
-//   List <TasksModel> tasks ;
-//
-//   void loadTask()
-//   {
-//
-//   }
-//
-//   void addTask()
-//   {
-//     MyDataBase.insertTasks(tasks);
-//   }
-//
-//   void deleteTask()
-//   {
-//     MyDataBase.deleteTask(tasks);
-//   }
-// }

@@ -6,7 +6,11 @@ void pop(BuildContext context) {
 
 void navigateTo(BuildContext context,
     {required String routeName, Object? arguments}) {
-  Navigator.pushNamed(context, routeName, arguments: arguments);
+  Navigator.pushNamed(
+    context,
+    routeName,
+    arguments: arguments,
+  );
 }
 
 void navigateAndFinish(
@@ -15,5 +19,9 @@ void navigateAndFinish(
   Object? arguments,
 }) {
   Navigator.pushNamedAndRemoveUntil(
-      context, routeName, arguments: arguments, (route) => false);
+    context,
+    routeName,
+    arguments: arguments,
+    (route) => false,
+  );
 }
