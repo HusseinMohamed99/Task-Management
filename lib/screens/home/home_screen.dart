@@ -57,18 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
             });
           },
           currentIndex: currentIndex,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.list,
-                size: 24.sp,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings,
-                size: 24.sp,
               ),
               label: '',
             ),
