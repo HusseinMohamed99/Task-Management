@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -23,20 +24,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
     var settingsProvider = Provider.of<SettingsProvider>(context);
     return SingleChildScrollView(
       child: Container(
-        padding: const EdgeInsets.all(12),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        padding: const EdgeInsets.all(12).r,
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Text(
             AppLocalizations.of(context)!.theme,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2!
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
           ),
-          const Space(width: 0, height: 8),
+          Space(
+            width: 0,
+            height: 8.h,
+          ),
           Card(
-            color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+            color: settingsProvider.isDarkMode()
+                ? ThemeApp.lightPrimary
+                : Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0).r,
               child: InkWell(
                 onTap: () {
                   showThemeBottomSheet();
@@ -44,19 +51,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 60.w,
+                      height: 60.h,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         FontAwesomeIcons.solidMoon,
-                        size: 50,
+                        size: 50.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const Space(width: 10, height: 0),
+                    Space(
+                      width: 10.w,
+                      height: 0,
+                    ),
                     Text(
                       settingsProvider.isDarkMode()
                           ? AppLocalizations.of(context)!.dark
@@ -64,37 +74,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: settingsProvider.currentLanguage == 'en'
                           ? Theme.of(context).textTheme.headline6
                           : Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                     ),
                     const Spacer(),
-                    const Icon(
+                    Icon(
                       Icons.arrow_circle_down_sharp,
                       color: Colors.black,
+                      size: 24.sp,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(
-            height: 24,
+          Space(
+            height: 24.h,
+            width: 0,
           ),
           Text(
             AppLocalizations.of(context)!.language,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2!
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
           ),
-          const SizedBox(
-            height: 8,
+          Space(
+            height: 8.h,
+            width: 0,
           ),
           Card(
-            color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+            color: settingsProvider.isDarkMode()
+                ? ThemeApp.lightPrimary
+                : Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0).r,
               child: InkWell(
                 onTap: () {
                   showLanguageBottomSheet();
@@ -102,19 +117,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 60.w,
+                      height: 60.h,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         FontAwesomeIcons.globe,
-                        size: 50,
+                        size: 50.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const Space(width: 10, height: 0),
+                    Space(
+                      width: 10.w,
+                      height: 0,
+                    ),
                     Text(
                       settingsProvider.currentLanguage == 'en'
                           ? AppLocalizations.of(context)!.english
@@ -122,37 +140,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: settingsProvider.currentLanguage == 'en'
                           ? Theme.of(context).textTheme.headline6
                           : Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                     ),
                     const Spacer(),
-                    const Icon(
+                    Icon(
                       Icons.arrow_circle_down_sharp,
                       color: Colors.black,
+                      size: 24.sp,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const SizedBox(
-            height: 24,
+          Space(
+            height: 24.h,
+            width: 0,
           ),
           Text(
             'GitHub',
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2!
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
           ),
-          const SizedBox(
-            height: 8,
+          Space(
+            height: 8.h,
+            width: 0,
           ),
           Card(
-            color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+            color: settingsProvider.isDarkMode()
+                ? ThemeApp.lightPrimary
+                : Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0).r,
               child: InkWell(
                 onTap: () {
                   Share.share('''*Task-Management*\n
@@ -161,49 +184,58 @@ You can develop it from my GitHub https://github.com/HusseinMohamed99''');
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 60.w,
+                      height: 60.h,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         FontAwesomeIcons.github,
-                        size: 50,
+                        size: 50.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const Space(width: 10, height: 0),
+                    Space(
+                      width: 10.w,
+                      height: 0,
+                    ),
                     Text(
                       'GitHub',
                       style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     const Spacer(),
-                    const Icon(
+                    Icon(
                       Icons.arrow_circle_down_sharp,
                       color: Colors.black,
+                      size: 24.sp,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          const Space(width: 0, height: 24),
+          Space(width: 0, height: 24.h),
           Text(
             'WebSite',
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2!
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.sp,
+                ),
           ),
-          const Space(width: 0, height: 8),
+          Space(
+            width: 0,
+            height: 8.h,
+          ),
           Card(
-            color: settingsProvider.isDarkMode() ? ThemeApp.lightPrimary : Colors.white,
+            color: settingsProvider.isDarkMode()
+                ? ThemeApp.lightPrimary
+                : Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0).r,
               child: InkWell(
                 onTap: () {
                   Share.share('''*My Portfolio*\n
@@ -212,30 +244,34 @@ You can connect with me from my Portfolio https://zaap.bio/HusseinMohamed''');
                 child: Row(
                   children: [
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 60.w,
+                      height: 60.h,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         FontAwesomeIcons.envelope,
-                        size: 40,
+                        size: 40.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const Space(width: 10, height: 0),
+                    Space(
+                      width: 10.w,
+                      height: 0,
+                    ),
                     Text(
                       'My Portfolio',
                       style: Theme.of(context).textTheme.headline6!.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const Spacer(),
-                    const Icon(
+                    Icon(
                       Icons.arrow_circle_down_sharp,
                       color: Colors.black,
+                      size: 24.sp,
                     ),
                   ],
                 ),
@@ -249,17 +285,19 @@ You can connect with me from my Portfolio https://zaap.bio/HusseinMohamed''');
 
   void showThemeBottomSheet() {
     showModalBottomSheet(
-        context: context,
-        builder: (buildContext) {
-          return const ThemeBottomSheet();
-        });
+      context: context,
+      builder: (buildContext) {
+        return const ThemeBottomSheet();
+      },
+    );
   }
 
   void showLanguageBottomSheet() {
     showModalBottomSheet(
-        context: context,
-        builder: (buildContext) {
-          return const LanguageBottomSheet();
-        });
+      context: context,
+      builder: (buildContext) {
+        return const LanguageBottomSheet();
+      },
+    );
   }
 }

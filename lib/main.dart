@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   late SettingsProvider settingsProvider;
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     settingsProvider = Provider.of<SettingsProvider>(context);
@@ -47,8 +46,7 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child)
-      {
+      builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: const [

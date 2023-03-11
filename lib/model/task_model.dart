@@ -5,7 +5,6 @@ class TasksModel
    String title;
    String description;
    DateTime dateTime;
-  // Timestamp timeOfDay;
    bool isDone;
 
    TasksModel(
@@ -14,7 +13,6 @@ class TasksModel
    required this.title,
    required this.description,
    required this.dateTime,
- //  required this.timeOfDay,
      this.isDone = false,
 });
 
@@ -24,7 +22,6 @@ class TasksModel
          title: data['title'],
          description: data['description'],
          dateTime: DateTime.fromMillisecondsSinceEpoch(data['dateTime']),
-        // timeOfDay: Timestamp.fromMillisecondsSinceEpoch(data['timeOfDay']),
          isDone: data['isDone'],
 
        );
@@ -37,7 +34,6 @@ class TasksModel
          'description': description,
          'isDone' : isDone,
          'dateTime' : dateTime.millisecondsSinceEpoch,
-        // 'timeOfDay' : timeOfDay.millisecondsSinceEpoch,
        };
   }
 }
