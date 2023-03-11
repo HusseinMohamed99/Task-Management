@@ -1,11 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:task_management/screens/desktop/desktop_screen.dart';
 import 'package:task_management/screens/home/home_screen.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
@@ -15,7 +13,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  ScreenUtil.ensureScreenSize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -52,7 +50,6 @@ class MyApp extends StatelessWidget {
       builder: (context , child)
       {
         return MaterialApp(
-
           debugShowCheckedModeBanner: false,
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -61,24 +58,16 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          locale: Locale(settingsProvider.currentLanguage),
-          home: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                if (kDebugMode) {
-                  print(constraints.minWidth.toInt());
-                }
-                if (constraints.minWidth.toInt() <= 560) {
-                  return const HomeScreen();
-                }
-                return const DesktopScreen();
-              }),
+          locale: Locale(
+            settingsProvider.currentLanguage,
+          ),
           theme: ThemeApp.lightTheme,
           darkTheme: ThemeApp.darkTheme,
           themeMode: settingsProvider.currentTheme,
           routes: {
             HomeScreen.routeName: (_) => const HomeScreen(),
           },
-          initialRoute: '/',
+          initialRoute: HomeScreen.routeName,
         );
       },
     );
@@ -86,12 +75,18 @@ class MyApp extends StatelessWidget {
 
   getValueFromPref() async {
     final pref = await SharedPreferences.getInstance();
-    settingsProvider.changeLanguage(pref.getString("Lang") ?? "en");
+    settingsProvider.changeLanguage(
+      pref.getString("Lang") ?? "en",
+    );
 
     if (pref.getString("Theme") == "Light") {
-      settingsProvider.changeTheme(ThemeMode.light);
+      settingsProvider.changeTheme(
+        ThemeMode.light,
+      );
     } else if (pref.getString("Theme") == "Dark") {
-      settingsProvider.changeTheme(ThemeMode.dark);
+      settingsProvider.changeTheme(
+        ThemeMode.dark,
+      );
     }
   }
 }
