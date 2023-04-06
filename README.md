@@ -3,11 +3,11 @@
 | Splash Screen | Splash Dark                       |
 |------|-------------------------------------------|
 |<img src="assets/images/splash.png" width="400">| <img src="assets/images/splash_dark.png" width="400"> |
-| Quran Screen Light | Quran Screen Dark                       |
+| Tasks Screen Light | Tasks Screen Dark                       |
 | <img src="assets/images/1.jpg" width="400"> | <img src="assets/images/8.jpg" width="400"> |
-| Ahadith Screen Light |  Ahadith Screen Dark                       |
+| Add Task Screen Light |  Add Task Screen Dark                       |
 | <img src="assets/images/2.jpg" width="400"> | <img src="assets/images/10.jpg" width="400"> |
-| Sebha Screen Light | sebha Screen Dark                       |
+| Add Task Screen Light | Add Task Screen Dark                       |
 | <img src="assets/images/3.jpg" width="400"> | <img src="assets/images/11.jpg" width="400"> |
 | Tasks Screen Light | Tasks Screen Dark                       |
 | <img src="assets/images/4.jpg" width="400"> | <img src="assets/images/9.jpg" width="400"> |
