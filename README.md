@@ -11,9 +11,9 @@
 | <img src="assets/images/3.jpg" width="400"> | <img src="assets/images/11.jpg" width="400"> |
 | Settings Screen Light | Settings Screen Dark                       |
 | <img src="assets/images/4.jpg" width="400"> | <img src="assets/images/9.jpg" width="400"> |
-| Ayet Screen Light | Ayet Screen Dark                       |
+| Edit Screen Light | Edit Screen Dark                       |
 | <img src="assets/images/5.jpg" width="400"> | <img src="assets/images/12.jpg" width="400"> |
-| Hadith Screen Light | Hadith Screen Dark                       |
+| Delete Task Light | Delete Task Dark                       |
 | <img src="assets/images/6.jpg" width="400"> | <img src="assets/images/13.jpg" width="400"> |
 | Settings Screen Light | Settings Screen Dark                       |
 | <img src="assets/images/7.jpg" width="400"> | <img src="assets/images/14.jpg" width="400"> |
