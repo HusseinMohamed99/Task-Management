@@ -15,5 +15,5 @@
 | <img src="assets/images/5.jpg" width="400"> | <img src="assets/images/12.jpg" width="400"> |
 | Hadith Screen Light | Hadith Screen Dark                       |
 | <img src="assets/images/6.jpg" width="400"> | <img src="assets/images/13.jpg" width="400"> |
-| Hadith Screen Light | Hadith Screen Dark                       |
+| Settings Screen Light | Settings Screen Dark                       |
 | <img src="assets/images/7.jpg" width="400"> | <img src="assets/images/14.jpg" width="400"> |
