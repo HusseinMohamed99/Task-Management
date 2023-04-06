@@ -4,7 +4,7 @@
 |------|-------------------------------------------|
 |<img src="assets/images/splash.png" width="400">| <img src="assets/images/splash_dark.png" width="400"> |
 | Quran Screen Light | Quran Screen Dark                       |
-| <img src="assets/images/1.jpg" width="400"> | <img src="assets/images/7.jpg" width="400"> |
+| <img src="assets/images/1.jpg" width="400"> | <img src="assets/images/8.jpg" width="400"> |
 | Ahadith Screen Light |  Ahadith Screen Dark                       |
 | <img src="assets/images/2.jpg" width="400"> | <img src="assets/images/8.jpg" width="400"> |
 | Sebha Screen Light | sebha Screen Dark                       |
