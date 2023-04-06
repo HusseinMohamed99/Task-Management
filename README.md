@@ -9,7 +9,7 @@
 | <img src="assets/images/2.jpg" width="400"> | <img src="assets/images/10.jpg" width="400"> |
 | Sebha Screen Light | sebha Screen Dark                       |
 | <img src="assets/images/3.jpg" width="400"> | <img src="assets/images/11.jpg" width="400"> |
-| Settings Screen Light | Settings Screen Dark                       |
+| Tasks Screen Light | Tasks Screen Dark                       |
 | <img src="assets/images/4.jpg" width="400"> | <img src="assets/images/9.jpg" width="400"> |
 | Edit Screen Light | Edit Screen Dark                       |
 | <img src="assets/images/5.jpg" width="400"> | <img src="assets/images/12.jpg" width="400"> |
