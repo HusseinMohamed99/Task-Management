@@ -22,3 +22,7 @@ Used a user-friendly interface to make the application easy to use
 | <img src="assets/images/6.jpg" width="400"> | <img src="assets/images/13.jpg" width="400"> |
 | Settings Screen Light | Settings Screen Dark                       |
 | <img src="assets/images/7.jpg" width="400"> | <img src="assets/images/14.jpg" width="400"> |
+
+Task-Management
+:-:
+<video src='https://github.com/HusseinMohamed99/Task-Management/assets/84459939/978f1040-20da-422d-8021-08827d9f8c5c' width=250/> |
