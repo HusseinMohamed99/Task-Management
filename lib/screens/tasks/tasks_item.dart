@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +11,6 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksItem extends StatelessWidget {
   final TasksModel tasks;
@@ -83,7 +83,7 @@ class TasksItem extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           textStyle: Theme.of(context)
                               .textTheme
-                              .headline6
+                              .titleLarge
                               ?.copyWith(
                                 color:
                                     tasks.isDone ? Colors.green : Colors.blue,
@@ -94,7 +94,7 @@ class TasksItem extends StatelessWidget {
                       Text(
                         tasks.description,
                         style: GoogleFonts.roboto(
-                          textStyle: Theme.of(context).textTheme.subtitle2,
+                          textStyle: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
                     ],
@@ -108,15 +108,17 @@ class TasksItem extends StatelessWidget {
                   child: tasks.isDone
                       ? Text(
                           AppLocalizations.of(context)!.condition,
-                          style:
-                              Theme.of(context).textTheme.headline2!.copyWith(
-                                    color: Colors.green,
-                                    fontSize: 25.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium!
+                              .copyWith(
+                                color: Colors.green,
+                                fontSize: 25.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                         )
                       : Container(
-                    margin: const EdgeInsets.all(25).r,
+                          margin: const EdgeInsets.all(25).r,
                           padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 5)
                               .r,

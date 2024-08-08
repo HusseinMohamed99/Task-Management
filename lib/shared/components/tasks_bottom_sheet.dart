@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +11,6 @@ import 'package:task_management/shared/components/navigator.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:task_management/shared/style/theme.dart';
 
 class TasksBottomSheet extends StatefulWidget {
@@ -39,7 +39,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
               AppLocalizations.of(context)!.addtask,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
-                textStyle: Theme.of(context).textTheme.headline5!.copyWith(
+                textStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color:
                           provider.isDarkMode() ? Colors.white : Colors.black,
                     ),
@@ -119,12 +119,14 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                         Text(
                           AppLocalizations.of(context)!.date,
                           style: GoogleFonts.poppins(
-                            textStyle:
-                                Theme.of(context).textTheme.headline6!.copyWith(
-                                      color: provider.isDarkMode()
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                           ),
                         ),
                         Container(
@@ -147,7 +149,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                 style: GoogleFonts.poppins(
                                   textStyle: Theme.of(context)
                                       .textTheme
-                                      .headline6!
+                                      .titleLarge!
                                       .copyWith(
                                         color: Colors.grey,
                                       ),
@@ -181,7 +183,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                           style: GoogleFonts.poppins(
                             textStyle: Theme.of(context)
                                 .textTheme
-                                .headline6!
+                                .titleLarge!
                                 .copyWith(
                                     color: provider.isDarkMode()
                                         ? Colors.white
@@ -206,7 +208,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                 style: GoogleFonts.poppins(
                                   textStyle: Theme.of(context)
                                       .textTheme
-                                      .headline6!
+                                      .titleLarge!
                                       .copyWith(
                                         color: Colors.grey,
                                       ),
@@ -239,7 +241,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                 child: Text(
                   AppLocalizations.of(context)!.add,
                   style: GoogleFonts.poppins(
-                    textStyle: Theme.of(context).textTheme.headline6,
+                    textStyle: Theme.of(context).textTheme.titleLarge,
                   ),
                 )),
           ],
@@ -321,7 +323,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headline4?.copyWith(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: ThemeApp.secondaryColor,
               ),
         ),
@@ -337,7 +339,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
   Widget getUnselectedItem(String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.headline4,
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }

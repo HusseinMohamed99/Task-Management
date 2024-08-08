@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,6 @@ import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditTask extends StatefulWidget {
   final TasksModel tasks;
@@ -84,12 +84,14 @@ class _EditTaskState extends State<EditTask> {
                           AppLocalizations.of(context)!.edit,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
-                            textStyle:
-                                Theme.of(context).textTheme.headline5!.copyWith(
-                                      color: provider.isDarkMode()
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .headlineSmall!
+                                .copyWith(
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                           ),
                         ),
                         TextFormField(
@@ -182,7 +184,7 @@ class _EditTaskState extends State<EditTask> {
                                     style: GoogleFonts.poppins(
                                       textStyle: Theme.of(context)
                                           .textTheme
-                                          .headline6!
+                                          .titleLarge!
                                           .copyWith(
                                             color: provider.isDarkMode()
                                                 ? Colors.white
@@ -213,7 +215,7 @@ class _EditTaskState extends State<EditTask> {
                                           style: GoogleFonts.poppins(
                                             textStyle: Theme.of(context)
                                                 .textTheme
-                                                .headline6!
+                                                .titleLarge!
                                                 .copyWith(
                                                   color: Colors.grey,
                                                 ),
@@ -248,7 +250,7 @@ class _EditTaskState extends State<EditTask> {
                                     style: GoogleFonts.poppins(
                                       textStyle: Theme.of(context)
                                           .textTheme
-                                          .headline6!
+                                          .titleLarge!
                                           .copyWith(
                                             color: provider.isDarkMode()
                                                 ? Colors.white
@@ -276,7 +278,7 @@ class _EditTaskState extends State<EditTask> {
                                           style: GoogleFonts.poppins(
                                             textStyle: Theme.of(context)
                                                 .textTheme
-                                                .headline6!
+                                                .titleLarge!
                                                 .copyWith(
                                                   color: Colors.grey,
                                                 ),
@@ -314,7 +316,7 @@ class _EditTaskState extends State<EditTask> {
                                 style: GoogleFonts.poppins(
                                   textStyle: Theme.of(context)
                                       .textTheme
-                                      .headline6
+                                      .titleLarge
                                       ?.copyWith(
                                         color: Colors.white,
                                       ),

@@ -70,7 +70,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.headline4?.copyWith(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: ThemeApp.secondaryColor,
               ),
         ),
@@ -86,7 +86,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   Widget getUnselectedItem(String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.headline4,
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 }

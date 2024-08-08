@@ -26,15 +26,15 @@ class ThemeApp {
     ),
     cardColor: Colors.white,
     textTheme: TextTheme(
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontSize: 24.sp,
         color: lightPrimary,
       ),
-      headline5: TextStyle(
+      headlineSmall: TextStyle(
         fontSize: 30.sp,
         color: lightPrimary,
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontSize: 14.sp,
         color: Colors.grey,
       ),
@@ -94,15 +94,15 @@ class ThemeApp {
       ),
     ),
     textTheme: TextTheme(
-      headline6: TextStyle(
+      titleLarge: TextStyle(
         fontSize: 22.sp,
         color: Colors.white,
       ),
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         fontSize: 28.sp,
         color: Colors.white,
       ),
-      subtitle2: TextStyle(
+      titleSmall: TextStyle(
         fontSize: 14.sp,
         color: Colors.white,
       ),
