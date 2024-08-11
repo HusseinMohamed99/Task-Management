@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_management/shared/style/theme.dart';
 
 class MyDivider extends StatelessWidget {
-  const MyDivider({Key? key}) : super(key: key);
+  const MyDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
