@@ -15,7 +15,7 @@ import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:task_management/shared/style/theme.dart';
 
 class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
+  const TasksScreen({super.key});
   static const String routeName = 'TasksScreen';
   @override
   State<TasksScreen> createState() => _TasksScreenState();
@@ -24,7 +24,6 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

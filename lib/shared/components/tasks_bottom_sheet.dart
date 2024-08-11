@@ -250,7 +250,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
     );
   }
 
-  void insertTasks() async {
+  void insertTasks() {
     if (formKey.currentState?.validate() == false) {
       return;
     }
@@ -262,7 +262,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
 
     MyDialog.showLoadingDialog(context, AppLocalizations.of(context)!.loading);
     try {
-      await MyDataBase.insertTasks(tasks);
+      MyDataBase.insertTasks(tasks);
       MyDialog.hideDialog(context);
       MyDialog.showMessage(context, AppLocalizations.of(context)!.task_insert,
           posActionTitle: AppLocalizations.of(context)!.ok, posAction: () {
@@ -274,9 +274,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
         context,
         AppLocalizations.of(context)!.task_error,
         posActionTitle: AppLocalizations.of(context)!.try_again,
-        posAction: () {
-          insertTasks();
-        },
+        posAction: insertTasks,
         isDismissible: false,
       );
     }

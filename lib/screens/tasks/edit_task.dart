@@ -308,9 +308,7 @@ class _EditTaskState extends State<EditTask> {
                           ),
                           child: TextButton(
                               clipBehavior: Clip.antiAliasWithSaveLayer,
-                              onPressed: () {
-                                editTask();
-                              },
+                              onPressed: editTask,
                               child: Text(
                                 AppLocalizations.of(context)!.save,
                                 style: GoogleFonts.poppins(
