@@ -64,14 +64,14 @@ class ThemeApp {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      showSelectedLabels: true,
+      showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedIconTheme: IconThemeData(
-        size: 35.sp,
+        size: 30.sp,
         color: lightPrimary,
       ),
       unselectedIconTheme: IconThemeData(
-        size: 30.sp,
+        size: 25.sp,
         color: grey,
       ),
       selectedLabelStyle: const TextStyle(
@@ -119,14 +119,14 @@ class ThemeApp {
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: darkBottom,
-      showSelectedLabels: true,
+      showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedIconTheme: IconThemeData(
-        size: 35.sp,
+        size: 30.sp,
         color: lightPrimary,
       ),
       unselectedIconTheme: IconThemeData(
-        size: 30.sp,
+        size: 25.sp,
         color: grey,
       ),
       selectedLabelStyle: const TextStyle(

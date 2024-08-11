@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'intl/messages_all.dart';
+import 'package:task_management/generated/intl/messages_all.dart';
 
 // **************************************************************************
 // Generator: Flutter Intl IDE plugin
@@ -60,11 +60,31 @@ class S {
     );
   }
 
+  /// `   Done! ✅  `
+  String get condition {
+    return Intl.message(
+      '   Done! ✅  ',
+      name: 'condition',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Task`
   String get task {
     return Intl.message(
       'Task',
       name: 'task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Are You Sure .  Delete This Task ?',`
+  String get delete_task {
+    return Intl.message(
+      '\'Are You Sure .  Delete This Task ?\',',
+      name: 'delete_task',
       desc: '',
       args: [],
     );
@@ -95,16 +115,6 @@ class S {
     return Intl.message(
       'Add New Task',
       name: 'addtask',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `'Are You Sure .  Delete This Task ?',`
-  String get delete_task {
-    return Intl.message(
-      '\'Are You Sure .  Delete This Task ?\',',
-      name: 'delete_task',
       desc: '',
       args: [],
     );
@@ -365,16 +375,6 @@ class S {
     return Intl.message(
       'Arabic',
       name: 'arabic',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `   Done! ✅  `
-  String get condition {
-    return Intl.message(
-      '   Done! ✅  ',
-      name: 'condition',
       desc: '',
       args: [],
     );

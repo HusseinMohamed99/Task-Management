@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task_management/screens/settings/settings_screen.dart';
 import 'package:task_management/screens/tasks/tasks_screen.dart';
 import 'package:task_management/shared/components/tasks_bottom_sheet.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
   static const String routeName = 'HomeScreen';
 
   @override
@@ -38,9 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 5.w,
           ),
         ),
-        onPressed: () {
-          showTasksBottomSheet();
-        },
+        onPressed: showTasksBottomSheet,
         child: Icon(
           Icons.add,
           size: 24.sp,
@@ -48,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        height: 75.h,
         shape: const CircularNotchedRectangle(),
         notchMargin: 10.r,
         child: BottomNavigationBar(

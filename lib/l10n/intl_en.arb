@@ -1,10 +1,12 @@
 {
+  "@@locale": "en",
   "title" : "Task Management",
-  "task" : "Task",
+  "condition": "   Done! ✅  ",
+  "task" : "Task", 
+  "delete_task" : "'Are You Sure .  Delete This Task ?',",
   "mode" : "Mode",
   "delete" : "Delete",
   "addtask" : "Add New Task",
-  "delete_task" : "'Are You Sure .  Delete This Task ?',",
   "title_" : "Title",
   "no_task" : "No Tasks Yet!",
   "try_again" : "Try Again",
@@ -31,6 +33,5 @@
   "save": "Save Changes",
   "english": "English",
   "arabic": "Arabic",
-  "condition": "   Done! ✅  ",
   "add" : "Submit"
 }
