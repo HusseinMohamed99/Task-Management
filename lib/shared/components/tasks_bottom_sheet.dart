@@ -132,7 +132,6 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(top: 8.0).r,
-                          padding: const EdgeInsets.only(left: 14.0).r,
                           height: 52.h,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -152,6 +151,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                       .titleLarge!
                                       .copyWith(
                                         color: Colors.grey,
+                                        fontSize: 20.sp,
                                       ),
                                 ),
                               ),
@@ -160,7 +160,6 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                 color: provider.isDarkMode()
                                     ? Colors.white
                                     : Colors.black,
-                                size: 24.sp,
                               ),
                             ],
                           ),
@@ -185,15 +184,15 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                 .textTheme
                                 .titleLarge!
                                 .copyWith(
-                                    color: provider.isDarkMode()
-                                        ? Colors.white
-                                        : Colors.black),
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
                           margin: const EdgeInsets.only(top: 8.0).r,
-                          padding: const EdgeInsets.only(left: 14.0).r,
                           height: 52,
                           decoration: BoxDecoration(
                             border:
@@ -211,6 +210,7 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                       .titleLarge!
                                       .copyWith(
                                         color: Colors.grey,
+                                        fontSize: 20.sp,
                                       ),
                                 ),
                               ),
@@ -219,7 +219,6 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
                                 color: provider.isDarkMode()
                                     ? Colors.white
                                     : Colors.black,
-                                size: 24.sp,
                               ),
                             ],
                           ),
