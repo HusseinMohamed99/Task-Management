@@ -15,7 +15,8 @@ import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 import 'package:intl/src/intl_helpers.dart';
-import 'package:task_management/generated/intl/messages_en.dart' as messages_en;
+
+import 'messages_en.dart' as messages_en;
 
 typedef Future<dynamic> LibraryLoader();
 Map<String, LibraryLoader> _deferredLibraries = {
@@ -41,7 +42,7 @@ Future<bool> initializeMessages(String localeName) {
   }
   var lib = _deferredLibraries[availableLocale];
   lib == null ? new SynchronousFuture(false) : lib();
-  initializeInternalMessageLookup(CompositeMessageLookup.new);
+  initializeInternalMessageLookup(() => new CompositeMessageLookup());
   messageLookup.addLocale(availableLocale, _findGeneratedMessagesFor);
   return new SynchronousFuture(true);
 }
