@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        padding: EdgeInsets.zero,
         height: MediaQuery.sizeOf(context).height * .085.h,
         shape: const CircularNotchedRectangle(),
         notchMargin: 10.r,
