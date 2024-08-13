@@ -55,7 +55,7 @@ class TasksItem extends StatelessWidget {
             ],
           ),
           child: Container(
-            padding: const EdgeInsets.all(12).r,
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
             decoration: BoxDecoration(
               color: provider.isDarkMode()
                   ? const Color(0xff141922)
@@ -65,7 +65,7 @@ class TasksItem extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  height: 80.h,
+                  height: 60.h,
                   width: 5.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18).r,
@@ -90,7 +90,7 @@ class TasksItem extends StatelessWidget {
                               ),
                         ),
                       ),
-                      Space(width: 0, height: 10.h),
+                      Space(width: 0, height: 6.h),
                       Text(
                         tasks.description,
                         style: GoogleFonts.roboto(

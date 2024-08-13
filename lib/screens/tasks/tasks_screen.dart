@@ -38,7 +38,7 @@ class _TasksScreenState extends State<TasksScreen> {
             Container(
               color: ThemeApp.lightPrimary,
               width: double.infinity,
-              height: 85.h,
+              height: 70.h,
             ),
             CalendarTimeline(
               initialDate: selectedDate,

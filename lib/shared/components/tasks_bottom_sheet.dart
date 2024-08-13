@@ -28,222 +28,228 @@ class _TasksBottomSheetState extends State<TasksBottomSheet> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingsProvider>(context);
+    double responsiveHeight = MediaQuery.sizeOf(context).height;
     return Container(
       padding: const EdgeInsets.all(12).r,
       child: Form(
         key: formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              AppLocalizations.of(context)!.addtask,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                textStyle: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color:
-                          provider.isDarkMode() ? Colors.white : Colors.black,
-                    ),
-              ),
-            ),
-            TextFormField(
-              style: TextStyle(
-                color: provider.isDarkMode() ? Colors.white : Colors.black,
-              ),
-              controller: titleController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.title_,
-                labelStyle: TextStyle(
-                  color: provider.isDarkMode() ? Colors.white : Colors.black,
-                ),
-                prefixIcon: Icon(
-                  size: 24.sp,
-                  Icons.edit,
-                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.addtask,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  textStyle: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .copyWith(
+                        color:
+                            provider.isDarkMode() ? Colors.white : Colors.black,
+                      ),
                 ),
               ),
-              validator: (value) {
-                if (value!.trim().isEmpty) {
-                  return AppLocalizations.of(context)!.valid_title;
-                }
-                if (value.length < 3) {
-                  return AppLocalizations.of(context)!.title_length;
-                }
-                return null;
-              },
-            ),
-            Space(
-              width: 0,
-              height: 12.h,
-            ),
-            TextFormField(
-              style: TextStyle(
-                color: provider.isDarkMode() ? Colors.white : Colors.black,
-              ),
-              controller: descriptionController,
-              maxLines: 6,
-              minLines: 1,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.desc,
-                labelStyle: TextStyle(
+              TextFormField(
+                style: TextStyle(
                   color: provider.isDarkMode() ? Colors.white : Colors.black,
                 ),
-                prefixIcon: Icon(
-                  size: 24.sp,
-                  Icons.description,
-                  color: provider.isDarkMode() ? Colors.white : Colors.black,
-                ),
-              ),
-              validator: (value) {
-                if (value!.trim().isEmpty) {
-                  return AppLocalizations.of(context)!.valid_desc;
-                }
-                if (value.length < 3) {
-                  return AppLocalizations.of(context)!.desc_length;
-                }
-                return null;
-              },
-            ),
-            Space(width: 0, height: 20.h),
-            Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      buildShowDatePicker(context);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.date,
-                          style: GoogleFonts.poppins(
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 8.0).r,
-                          height: 52.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
-                              width: 1.0.w,
-                            ),
-                            borderRadius: BorderRadius.circular(12).r,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                DateTimeUtils.formatTasksDate(selectedDate),
-                                style: GoogleFonts.poppins(
-                                  textStyle: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        color: Colors.grey,
-                                        fontSize: 20.sp,
-                                      ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.date_range,
-                                color: provider.isDarkMode()
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                controller: titleController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.title_,
+                  labelStyle: TextStyle(
+                    color: provider.isDarkMode() ? Colors.white : Colors.black,
+                  ),
+                  prefixIcon: Icon(
+                    size: 24.sp,
+                    Icons.edit,
+                    color: provider.isDarkMode() ? Colors.white : Colors.black,
                   ),
                 ),
-                Space(width: 10.w, height: 0),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      buildShowTimePicker(context);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.time,
-                          style: GoogleFonts.poppins(
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 8.0).r,
-                          height: 52,
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.grey, width: 1.0.w),
-                            borderRadius: BorderRadius.circular(12).r,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                selectedTime.format(context),
-                                style: GoogleFonts.poppins(
-                                  textStyle: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(
-                                        color: Colors.grey,
-                                        fontSize: 20.sp,
-                                      ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.watch_later_outlined,
-                                color: provider.isDarkMode()
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            TextButton(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                onPressed: () {
-                  insertTasks();
-                  descriptionController.clear();
-                  titleController.clear();
+                validator: (value) {
+                  if (value!.trim().isEmpty) {
+                    return AppLocalizations.of(context)!.valid_title;
+                  }
+                  if (value.length < 3) {
+                    return AppLocalizations.of(context)!.title_length;
+                  }
+                  return null;
                 },
-                child: Text(
-                  AppLocalizations.of(context)!.add,
-                  style: GoogleFonts.poppins(
-                    textStyle: Theme.of(context).textTheme.titleLarge,
+              ),
+              Space(
+                width: 0,
+                height: responsiveHeight * .009.h,
+              ),
+              TextFormField(
+                style: TextStyle(
+                  color: provider.isDarkMode() ? Colors.white : Colors.black,
+                ),
+                controller: descriptionController,
+                maxLines: 6,
+                minLines: 1,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.desc,
+                  labelStyle: TextStyle(
+                    color: provider.isDarkMode() ? Colors.white : Colors.black,
                   ),
-                )),
-          ],
+                  prefixIcon: Icon(
+                    size: 24.sp,
+                    Icons.description,
+                    color: provider.isDarkMode() ? Colors.white : Colors.black,
+                  ),
+                ),
+                validator: (value) {
+                  if (value!.trim().isEmpty) {
+                    return AppLocalizations.of(context)!.valid_desc;
+                  }
+                  if (value.length < 3) {
+                    return AppLocalizations.of(context)!.desc_length;
+                  }
+                  return null;
+                },
+              ),
+              Space(width: 0, height: responsiveHeight * .01.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        buildShowDatePicker(context);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.date,
+                            style: GoogleFonts.poppins(
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: provider.isDarkMode()
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(top: 8.0).r,
+                            height: 52.h,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0.w,
+                              ),
+                              borderRadius: BorderRadius.circular(12).r,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  DateTimeUtils.formatTasksDate(selectedDate),
+                                  style: GoogleFonts.poppins(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          color: Colors.grey,
+                                          fontSize: 20.sp,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.date_range,
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Space(width: 10.w, height: 0),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        buildShowTimePicker(context);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.time,
+                            style: GoogleFonts.poppins(
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: provider.isDarkMode()
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.only(top: 8.0).r,
+                            height: 52,
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.0.w),
+                              borderRadius: BorderRadius.circular(12).r,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  selectedTime.format(context),
+                                  style: GoogleFonts.poppins(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                          color: Colors.grey,
+                                          fontSize: 20.sp,
+                                        ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.watch_later_outlined,
+                                  color: provider.isDarkMode()
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Space(width: 0, height: responsiveHeight * .01.h),
+              TextButton(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  onPressed: () {
+                    insertTasks();
+                    descriptionController.clear();
+                    titleController.clear();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.add,
+                    style: GoogleFonts.poppins(
+                      textStyle: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  )),
+            ],
+          ),
         ),
       ),
     );
