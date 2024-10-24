@@ -1,47 +1,56 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:task_management/firebase_options.dart';
-import 'package:task_management/screens/home/home_screen.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:task_management/shared/style/theme.dart';
+part of './core/helpers/export_manager/export_manager.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ScreenUtil.ensureScreenSize();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await _initializeApp();
 
   runApp(
     ChangeNotifierProvider(
-      create: (buildContext) => SettingsProvider(),
-      child: Builder(
-        builder: (context) {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-          return TaskManagerApp();
-        },
-      ),
+      create: (_) => SettingsProvider(),
+      child: const TaskManagerApp(),
     ),
   );
 }
 
-class TaskManagerApp extends StatelessWidget {
-  TaskManagerApp({super.key});
+Future<void> _initializeApp() async {
+  await ScreenUtil.ensureScreenSize();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  late SettingsProvider settingsProvider;
+  if (kReleaseMode) {
+    // Pass all uncaught "fatal" errors from the framework to Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+  }
+
+  if (kReleaseMode) {
+    await requestReview();
+  }
+  if (kDebugMode) {
+    await Upgrader.clearSavedSettings();
+  }
+}
+
+class TaskManagerApp extends StatelessWidget {
+  const TaskManagerApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    settingsProvider = Provider.of<SettingsProvider>(context);
-    getValueFromPref();
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
+    _loadSettings(settingsProvider);
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -56,9 +65,7 @@ class TaskManagerApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          locale: Locale(
-            settingsProvider.currentLanguage,
-          ),
+          locale: Locale(settingsProvider.currentLanguage),
           theme: ThemeApp.lightTheme,
           darkTheme: ThemeApp.darkTheme,
           themeMode: settingsProvider.currentTheme,
@@ -70,21 +77,41 @@ class TaskManagerApp extends StatelessWidget {
       },
     );
   }
+}
 
-  getValueFromPref() async {
-    final pref = await SharedPreferences.getInstance();
-    settingsProvider.changeLanguage(
-      pref.getString('Lang') ?? 'en',
-    );
+Future<void> _loadSettings(SettingsProvider settingsProvider) async {
+  final prefs = await SharedPreferences.getInstance();
+  final language = prefs.getString('Lang') ?? 'en';
+  final theme = prefs.getString('Theme');
 
-    if (pref.getString('Theme') == 'Light') {
-      settingsProvider.changeTheme(
-        ThemeMode.light,
-      );
-    } else if (pref.getString('Theme') == 'Dark') {
-      settingsProvider.changeTheme(
-        ThemeMode.dark,
-      );
-    }
+  settingsProvider.changeLanguage(language);
+
+  if (theme == 'Light') {
+    settingsProvider.changeTheme(ThemeMode.light);
+  } else if (theme == 'Dark') {
+    settingsProvider.changeTheme(ThemeMode.dark);
+  }
+}
+
+Future<void> requestReview() async {
+  final InAppReview inAppReview = InAppReview.instance;
+
+  if (await inAppReview.isAvailable()) {
+    await inAppReview.requestReview();
+  } else {
+    goToApplicationOnPlayStore();
+  }
+}
+
+goToApplicationOnPlayStore() async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+  String url = '';
+  String packageName = packageInfo.packageName;
+  if (Platform.isAndroid) {
+    url = 'https://play.google.com/store/apps/details?id=$packageName';
+  } else if (!await launchUrl(Uri.parse(url),
+      mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $url');
   }
 }

@@ -1,39 +1,44 @@
 name: 'task_management'
 version: 1.0.0+3
 publish_to: none
-environment: 
+environment:
   sdk: '>=3.4.4 <4.0.0'
 description: A new Flutter project.
-dependencies: 
-  calendar_timeline: '^1.0.5'
-  cloud_firestore: '^5.2.1'
-  cupertino_icons: '^1.0.2'
-  firebase_core: '^3.3.0'
-  flutter: 
+dependencies:
+  calendar_timeline: ^1.0.5
+  cloud_firestore: ^5.2.1
+  cupertino_icons: ^1.0.2
+  firebase_core: ^3.3.0
+  firebase_crashlytics: ^4.1.3
+  flutter:
     sdk: flutter
-  flutter_localizations: 
+  flutter_localizations:
     sdk: flutter
-  flutter_screenutil: '^5.6.0'
-  flutter_slidable: '^3.1.1'
-  font_awesome_flutter: '^10.3.0'
-  google_fonts: '^6.2.1'
-  intl: '^0.19.0'
-  lottie: '^3.1.2'
-  provider: '^6.0.4'
-  rename: '^3.0.2'
-  share_plus: '^10.0.0'
-  shared_preferences: '^2.0.17'
-dev_dependencies: 
+  flutter_screenutil: ^5.6.0
+  flutter_slidable: ^3.1.1
+  font_awesome_flutter: ^10.3.0
+  google_fonts: ^6.2.1
+  in_app_review: ^2.0.9
+  intl: ^0.19.0
+  lottie: ^3.1.2
+  package_info_plus: ^8.1.0
+  provider: ^6.0.4
+  rename: ^3.0.2
+  share_plus: ^10.0.0
+  shared_preferences: ^2.0.17
+  upgrader: ^11.3.0
+  url_launcher: ^6.3.1
+dev_dependencies:
   custom_lint: '^0.6.4'
   custom_lint_builder: '^0.6.4'
   flutter_lints: '^4.0.0'
-  flutter_test: 
+  flutter_test:
     sdk: flutter
   pubspec_dependency_sorter: '^1.0.5'
-flutter: 
+flutter:
   generate: true
   uses-material-design: true
-  assets: 
+  assets:
     - assets/images/
-flutter_intl: 
+flutter_intl:
   enabled: true
