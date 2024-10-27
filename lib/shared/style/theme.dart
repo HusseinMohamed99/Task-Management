@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_management/core/helpers/export_manager/export_manager.dart';
 
 class ThemeApp {
   static const Color secondaryColor = Colors.blueAccent;
@@ -19,10 +20,10 @@ class ThemeApp {
     return ThemeData(
       primaryColor: lightPrimary,
       scaffoldBackgroundColor: scaffoldBackgroundColorLight,
-      bottomSheetTheme: _bottomSheetTheme(Colors.white),
-      cardColor: Colors.white,
+      bottomSheetTheme: _bottomSheetTheme(ColorManager.whiteColor),
+      cardColor: ColorManager.whiteColor,
       textTheme: _lightTextTheme(),
-      appBarTheme: _appBarTheme(lightPrimary, Colors.white),
+      appBarTheme: _appBarTheme(lightPrimary, ColorManager.whiteColor),
       bottomNavigationBarTheme: _bottomNavigationBarTheme(),
     );
   }
@@ -33,7 +34,7 @@ class ThemeApp {
       primaryColor: darkPrimary,
       bottomSheetTheme: _bottomSheetTheme(darkPrimary),
       textTheme: _darkTextTheme(),
-      appBarTheme: _appBarTheme(lightPrimary, Colors.white),
+      appBarTheme: _appBarTheme(lightPrimary, ColorManager.whiteColor),
       bottomNavigationBarTheme: _bottomNavigationBarTheme(),
     );
   }
@@ -51,35 +52,29 @@ class ThemeApp {
   }
 
   static TextTheme _lightTextTheme() {
-    return TextTheme(
+    return const TextTheme(
       titleLarge: TextStyle(
-        fontSize: 24.sp,
-        color: lightPrimary,
+        color: ColorManager.blackColor,
       ),
       headlineSmall: TextStyle(
-        fontSize: 30.sp,
-        color: lightPrimary,
+        color: ColorManager.blackColor,
       ),
       titleSmall: TextStyle(
-        fontSize: 14.sp,
         color: Colors.grey,
       ),
     );
   }
 
   static TextTheme _darkTextTheme() {
-    return TextTheme(
+    return const TextTheme(
       titleLarge: TextStyle(
-        fontSize: 22.sp,
-        color: Colors.white,
+        color: ColorManager.whiteColor,
       ),
       headlineMedium: TextStyle(
-        fontSize: 28.sp,
-        color: Colors.white,
+        color: ColorManager.whiteColor,
       ),
       titleSmall: TextStyle(
-        fontSize: 14.sp,
-        color: Colors.white,
+        color: ColorManager.whiteColor,
       ),
     );
   }
@@ -104,7 +99,7 @@ class ThemeApp {
         statusBarIconBrightness: Brightness.dark,
       ),
       actionsIconTheme: const IconThemeData(
-        color: Colors.white,
+        color: ColorManager.whiteColor,
       ),
     );
   }

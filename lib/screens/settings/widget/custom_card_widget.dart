@@ -15,7 +15,7 @@ class CustomCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: settingsProvider.isDarkMode()
-          ? ThemeApp.darkPrimary
+          ? ThemeApp.darkBottom
           : ThemeApp.lightPrimary,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
@@ -27,13 +27,13 @@ class CustomCardWidget extends StatelessWidget {
                 width: 55,
                 height: 55,
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: ColorManager.whiteColor,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   iconData,
                   size: 24.sp,
-                  color: Colors.black,
+                  color: ColorManager.blackColor,
                 ),
               ),
               const Space(
