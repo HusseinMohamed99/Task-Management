@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AdaptiveIndicator extends StatelessWidget {
-  final String os;
-  const AdaptiveIndicator({required this.os, super.key});
+  const AdaptiveIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {
