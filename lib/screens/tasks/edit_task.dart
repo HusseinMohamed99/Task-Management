@@ -1,15 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management/model/task_model.dart';
-import 'package:task_management/shared/components/date.dart';
-import 'package:task_management/shared/components/navigator.dart';
-import 'package:task_management/shared/components/size_box.dart';
-import 'package:task_management/shared/database/my_database.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:task_management/shared/style/theme.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class EditTask extends StatefulWidget {
   final TasksModel tasks;

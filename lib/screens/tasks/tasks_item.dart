@@ -1,16 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management/model/task_model.dart';
-import 'package:task_management/screens/tasks/edit_task.dart';
-import 'package:task_management/shared/adaptive/dialog.dart';
-import 'package:task_management/shared/components/size_box.dart';
-import 'package:task_management/shared/database/my_database.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:task_management/shared/style/theme.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class TasksItem extends StatelessWidget {
   final TasksModel tasks;
@@ -44,7 +32,7 @@ class TasksItem extends StatelessWidget {
                 onPressed: (_) {
                   deleteTask(context);
                 },
-                backgroundColor: Colors.red,
+                backgroundColor: const Color(0xFFF44336),
                 foregroundColor: Colors.white,
                 icon: Icons.delete_forever,
                 label: AppLocalizations.of(context)!.delete,
