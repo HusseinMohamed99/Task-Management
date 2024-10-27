@@ -13,71 +13,82 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingsProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          AppLocalizations.of(context)!.title,
-          style: GoogleFonts.poppins(
-            fontSize: 26.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: false,
-      ),
-      floatingActionButton: FloatingActionButton(
-        shape: StadiumBorder(
-          side: BorderSide(
-            color: Colors.white,
-            width: 5.w,
-          ),
-        ),
-        onPressed: showTasksBottomSheet,
-        child: Icon(
-          Icons.add,
-          size: 24.sp,
-        ),
-      ),
+      appBar: _buildAppBar(context),
+      floatingActionButton: _buildFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        padding: EdgeInsets.zero,
-        height: MediaQuery.sizeOf(context).height * .085.h,
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 10.r,
-        child: BottomNavigationBar(
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          currentIndex: currentIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.list,
-              ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.settings,
-              ),
-              label: '',
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: _buildBottomNavigationBar(settingsProvider),
       body: screens[currentIndex],
     );
   }
 
-  List<Widget> screens = [
-    const TasksScreen(),
-    const SettingsScreen(),
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      title: Text(
+        AppLocalizations.of(context)!.title,
+        style: buildTextStyle(fontSize: 20, context: context),
+      ),
+      centerTitle: false,
+    );
+  }
+
+  FloatingActionButton _buildFloatingActionButton() {
+    return FloatingActionButton(
+      shape: StadiumBorder(
+        side: BorderSide(
+          color: ColorManager.whiteColor,
+          width: 5.w,
+        ),
+      ),
+      onPressed: showTasksBottomSheet,
+      child: Icon(
+        Icons.add,
+        size: 24.sp,
+      ),
+    );
+  }
+
+  BottomAppBar _buildBottomNavigationBar(SettingsProvider settingsProvider) {
+    return BottomAppBar(
+      color: settingsProvider.isDarkMode()
+          ? ThemeApp.darkBottom
+          : ColorManager.whiteColor,
+      padding: EdgeInsets.zero,
+      height: MediaQuery.sizeOf(context).height * .06.h,
+      shape: const CircularNotchedRectangle(),
+      notchMargin: 10.r,
+      child: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        currentIndex: currentIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: '',
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> screens = const [
+    TasksScreen(),
+    SettingsScreen(),
   ];
 
   void showTasksBottomSheet() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (buildContext) {
         return const TasksBottomSheet();

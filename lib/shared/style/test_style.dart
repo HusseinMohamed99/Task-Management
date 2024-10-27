@@ -6,8 +6,8 @@ TextStyle buildTextStyle({
   double? letterSpacing,
   Color? color,
 }) {
-  return TextStyle(
-    color: color ?? Colors.white,
+  return GoogleFonts.poppins(
+    color: color ?? ColorManager.whiteColor,
     fontSize: getResponsiveFontSize(context, fontSize: fontSize.sp),
     fontWeight: FontWeight.w600,
     letterSpacing: letterSpacing,

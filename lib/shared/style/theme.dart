@@ -12,20 +12,46 @@ class ThemeApp {
   static const Color scaffoldBackgroundColorLight = Color(0xffDFECDB);
   static const Color scaffoldBackgroundColorDark = Color(0xff060E1E);
 
-  static final ThemeData lightTheme = ThemeData(
-    primaryColor: lightPrimary,
-    scaffoldBackgroundColor: scaffoldBackgroundColorLight,
-    bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: Colors.white,
+  static final ThemeData lightTheme = _buildLightTheme();
+  static final ThemeData darkTheme = _buildDarkTheme();
+
+  static ThemeData _buildLightTheme() {
+    return ThemeData(
+      primaryColor: lightPrimary,
+      scaffoldBackgroundColor: scaffoldBackgroundColorLight,
+      bottomSheetTheme: _bottomSheetTheme(Colors.white),
+      cardColor: Colors.white,
+      textTheme: _lightTextTheme(),
+      appBarTheme: _appBarTheme(lightPrimary, Colors.white),
+      bottomNavigationBarTheme: _bottomNavigationBarTheme(),
+    );
+  }
+
+  static ThemeData _buildDarkTheme() {
+    return ThemeData(
+      scaffoldBackgroundColor: scaffoldBackgroundColorDark,
+      primaryColor: darkPrimary,
+      bottomSheetTheme: _bottomSheetTheme(darkPrimary),
+      textTheme: _darkTextTheme(),
+      appBarTheme: _appBarTheme(lightPrimary, Colors.white),
+      bottomNavigationBarTheme: _bottomNavigationBarTheme(),
+    );
+  }
+
+  static BottomSheetThemeData _bottomSheetTheme(Color backgroundColor) {
+    return BottomSheetThemeData(
+      backgroundColor: backgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(18),
           topRight: Radius.circular(18),
         ).r,
       ),
-    ),
-    cardColor: Colors.white,
-    textTheme: TextTheme(
+    );
+  }
+
+  static TextTheme _lightTextTheme() {
+    return TextTheme(
       titleLarge: TextStyle(
         fontSize: 24.sp,
         color: lightPrimary,
@@ -38,13 +64,33 @@ class ThemeApp {
         fontSize: 14.sp,
         color: Colors.grey,
       ),
-    ),
-    appBarTheme: AppBarTheme(
+    );
+  }
+
+  static TextTheme _darkTextTheme() {
+    return TextTheme(
+      titleLarge: TextStyle(
+        fontSize: 22.sp,
+        color: Colors.white,
+      ),
+      headlineMedium: TextStyle(
+        fontSize: 28.sp,
+        color: Colors.white,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 14.sp,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  static AppBarTheme _appBarTheme(Color backgroundColor, Color titleColor) {
+    return AppBarTheme(
       elevation: 0,
       centerTitle: true,
-      color: lightPrimary,
+      color: backgroundColor,
       titleTextStyle: TextStyle(
-        color: Colors.white,
+        color: titleColor,
         fontSize: 32.sp,
         fontWeight: FontWeight.w500,
       ),
@@ -60,79 +106,28 @@ class ThemeApp {
       actionsIconTheme: const IconThemeData(
         color: Colors.white,
       ),
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      selectedIconTheme: IconThemeData(
-        size: 30.sp,
-        color: lightPrimary,
-      ),
-      unselectedIconTheme: IconThemeData(
-        size: 25.sp,
-        color: grey,
-      ),
-      selectedLabelStyle: const TextStyle(
-        color: Colors.black,
-      ),
-      selectedItemColor: Colors.black,
-    ),
-  );
+    );
+  }
 
-  static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: scaffoldBackgroundColorDark,
-    primaryColor: darkPrimary,
-    bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: darkPrimary,
-      shape: RoundedRectangleBorder(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(18),
-          topRight: Radius.circular(18),
-        ).r,
-      ),
-    ),
-    textTheme: TextTheme(
-      titleLarge: TextStyle(
-        fontSize: 22.sp,
-        color: Colors.white,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 28.sp,
-        color: Colors.white,
-      ),
-      titleSmall: TextStyle(
-        fontSize: 14.sp,
-        color: Colors.white,
-      ),
-    ),
-    appBarTheme: AppBarTheme(
-      centerTitle: true,
-      color: lightPrimary,
+  static BottomNavigationBarThemeData _bottomNavigationBarTheme(
+      [Color? backgroundColor]) {
+    return BottomNavigationBarThemeData(
+      backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
-      titleTextStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 32.sp,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: darkBottom,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       selectedIconTheme: IconThemeData(
-        size: 30.sp,
+        size: 24.sp,
         color: lightPrimary,
       ),
       unselectedIconTheme: IconThemeData(
-        size: 25.sp,
+        size: 20.sp,
         color: grey,
       ),
       selectedLabelStyle: const TextStyle(
         color: Colors.black,
       ),
       selectedItemColor: Colors.black,
-    ),
-  );
+    );
+  }
 }
