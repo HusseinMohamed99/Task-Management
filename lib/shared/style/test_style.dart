@@ -5,9 +5,12 @@ TextStyle buildTextStyle({
   required BuildContext context,
   double? letterSpacing,
   Color? color,
+  required SettingsProvider settingsProvider,
 }) {
   return GoogleFonts.poppins(
-    color: color ?? ColorManager.whiteColor,
+    color: settingsProvider.isDarkMode()
+        ? ColorManager.whiteColor
+        : ColorManager.blackColor,
     fontSize: getResponsiveFontSize(context, fontSize: fontSize.sp),
     fontWeight: FontWeight.w600,
     letterSpacing: letterSpacing,

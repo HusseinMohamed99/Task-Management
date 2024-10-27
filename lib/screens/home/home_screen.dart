@@ -29,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
       elevation: 0,
       title: Text(
         AppLocalizations.of(context)!.title,
-        style: buildTextStyle(fontSize: 20, context: context),
+        style: buildTextStyle(
+            fontSize: 20,
+            context: context,
+            settingsProvider: Provider.of<SettingsProvider>(context)),
       ),
       centerTitle: false,
     );

@@ -33,6 +33,7 @@ class _TasksScreenState extends State<TasksScreen> {
         ),
         CalendarTimeline(
           initialDate: selectedDate,
+          fontSize: getResponsiveFontSize(context, fontSize: 20),
           firstDate: DateTime.now().subtract(const Duration(days: 365)),
           lastDate: DateTime.now().add(const Duration(days: 365)),
           onDateSelected: (date) {
@@ -41,10 +42,10 @@ class _TasksScreenState extends State<TasksScreen> {
             });
           },
           leftMargin: 14.r,
-          monthColor: Colors.black,
-          dayColor: Colors.black,
+          monthColor: ColorManager.blackColor,
+          dayColor: ColorManager.blackColor,
           activeDayColor: Theme.of(context).primaryColor,
-          activeBackgroundDayColor: Colors.white,
+          activeBackgroundDayColor: ColorManager.whiteColor,
           dotColor: Theme.of(context).primaryColor,
           selectableDayPredicate: (date) => true,
           locale: settingsProvider.currentLanguage == 'en' ? 'en_ISO' : 'ar',
@@ -85,13 +86,22 @@ class _TasksScreenState extends State<TasksScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(AppLocalizations.of(context)!.error_loading),
+          Text(
+            AppLocalizations.of(context)!.error_loading,
+            style: buildTextStyle(
+              fontSize: 20,
+              context: context,
+              settingsProvider: Provider.of<SettingsProvider>(context),
+            ),
+          ),
           MaterialButton(
             onPressed: () {},
             child: Text(
               AppLocalizations.of(context)!.try_again,
-              style: GoogleFonts.poppins(
-                textStyle: Theme.of(context).textTheme.titleLarge,
+              style: buildTextStyle(
+                fontSize: 20,
+                context: context,
+                settingsProvider: Provider.of<SettingsProvider>(context),
               ),
             ),
           ),
@@ -105,11 +115,20 @@ class _TasksScreenState extends State<TasksScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/search.png', color: Colors.grey),
+          Image.asset(
+            'assets/images/search.png',
+            color: ColorManager.greyColor,
+            width: 80.w,
+            height: 80.h,
+          ),
           Space(width: 0, height: 20.h),
           Text(
             AppLocalizations.of(context)!.no_task,
-            style: GoogleFonts.roboto(fontSize: 20.sp, color: Colors.grey),
+            style: buildTextStyle(
+              fontSize: 20,
+              context: context,
+              settingsProvider: Provider.of<SettingsProvider>(context),
+            ),
           ),
         ],
       ),
