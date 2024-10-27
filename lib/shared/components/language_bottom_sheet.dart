@@ -1,98 +1,93 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:task_management/shared/components/size_box.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:task_management/shared/style/theme.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
-class LanguageBottomSheet extends StatefulWidget {
+class LanguageBottomSheet extends StatelessWidget {
   const LanguageBottomSheet({super.key});
 
   @override
-  State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
-}
-
-class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
-  @override
   Widget build(BuildContext context) {
-    var settingsProvider = Provider.of<SettingsProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final isDarkMode = settingsProvider.isDarkMode();
+    final color = isDarkMode ? const Color(0xff141922) : Colors.white;
+
     return Container(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
-          color: settingsProvider.isDarkMode()
-              ? const Color(0xff141922)
-              : Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ).r),
+        color: color,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(30.r),
+        ),
+      ),
       height: 200.h,
-      padding: const EdgeInsets.all(20).r,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          InkWell(
-            onTap: () {
-              settingsProvider.changeLanguage(
-                'en',
-              );
-            },
-            child: settingsProvider.currentLanguage == 'en'
-                ? getSelectedItem(
-                    AppLocalizations.of(context)!.english,
-                  )
-                : getUnselectedItem(
-                    AppLocalizations.of(context)!.english,
-                  ),
+          _buildLanguageOption(
+            context,
+            languageCode: 'en',
+            title: AppLocalizations.of(context)!.english,
+            isSelected: settingsProvider.currentLanguage == 'en',
+            onTap: () => settingsProvider.changeLanguage('en'),
           ),
-          Space(
-            height: 12.h,
-            width: 0,
-          ),
-          InkWell(
-            onTap: () {
-              settingsProvider.changeLanguage(
-                'ar',
-              );
-            },
-            child: settingsProvider.currentLanguage == 'ar'
-                ? getSelectedItem(
-                    AppLocalizations.of(context)!.arabic,
-                  )
-                : getUnselectedItem(
-                    AppLocalizations.of(context)!.arabic,
-                  ),
+          const Space(height: 12, width: 0),
+          _buildLanguageOption(
+            context,
+            languageCode: 'ar',
+            title: AppLocalizations.of(context)!.arabic,
+            isSelected: settingsProvider.currentLanguage == 'ar',
+            onTap: () => settingsProvider.changeLanguage('ar'),
           ),
         ],
       ),
     );
   }
 
-  Widget getSelectedItem(String title) {
+  Widget _buildLanguageOption(
+    BuildContext context, {
+    required String languageCode,
+    required String title,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: isSelected
+          ? _getSelectedItem(context, title)
+          : _getUnselectedItem(context, title),
+    );
+  }
+
+  Widget _getSelectedItem(BuildContext context, String title) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final textColor = settingsProvider.isDarkMode()
+        ? ThemeApp.darkPrimary
+        : ThemeApp.lightPrimary;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: ThemeApp.secondaryColor,
+                color: textColor,
+                fontSize: getResponsiveFontSize(context, fontSize: 20.sp),
               ),
         ),
         Icon(
           FontAwesomeIcons.circleCheck,
-          color: ThemeApp.secondaryColor,
+          color: textColor,
           size: 24.sp,
-        )
+        ),
       ],
     );
   }
 
-  Widget getUnselectedItem(String title) {
+  Widget _getUnselectedItem(BuildContext context, String title) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.headlineMedium,
+      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+            fontSize: getResponsiveFontSize(context, fontSize: 20.sp),
+          ),
     );
   }
 }
