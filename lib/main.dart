@@ -61,8 +61,8 @@ class TaskManagerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider =
-        Provider.of<SettingsProvider>(context, listen: false);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+
     _loadSettings(settingsProvider);
 
     SystemChrome.setPreferredOrientations([
