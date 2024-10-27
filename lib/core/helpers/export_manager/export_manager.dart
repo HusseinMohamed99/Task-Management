@@ -3,14 +3,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_management/screens/settings/settings_screen.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
 import 'package:task_management/screens/tasks/tasks_screen.dart';
+import 'package:task_management/shared/components/language_bottom_sheet.dart';
+import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/components/tasks_bottom_sheet.dart';
+import 'package:task_management/shared/components/theme_bottom_sheet.dart';
+import 'package:task_management/shared/providers/settings_provider.dart';
+import 'package:task_management/shared/style/theme.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 part './../../../screens/home/home_screen.dart';
+part './../../../screens/settings/settings_screen.dart';
+part './../../../screens/settings/widget/custom_card_widget.dart';
+part './../../../screens/settings/widget/title_widget.dart';
 part './../../../shared/components/upgrader_wrapper.dart';
-
-part './../responsive/font_size.dart';
 part './../../../shared/style/test_style.dart';
+part './../responsive/font_size.dart';
