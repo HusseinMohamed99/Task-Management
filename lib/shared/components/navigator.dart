@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 void pop(BuildContext context) {
   Navigator.pop(context);

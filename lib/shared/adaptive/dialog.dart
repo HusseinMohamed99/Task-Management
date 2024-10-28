@@ -1,12 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:task_management/shared/adaptive/indicator.dart';
-import 'package:task_management/shared/components/navigator.dart';
-import 'package:task_management/shared/components/size_box.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class MyDialog {
   static void showLoadingDialog(

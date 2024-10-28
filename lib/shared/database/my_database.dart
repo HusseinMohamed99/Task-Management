@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:task_management/model/task_model.dart';
-import 'package:task_management/shared/components/date.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class MyDataBase {
   static CollectionReference<TasksModel> getTasksCollection() {
@@ -42,13 +40,11 @@ class MyDataBase {
   }
 
   static Future<void> updateTasks(TasksModel tasks) {
-
     CollectionReference todoRef = getTasksCollection();
     return todoRef.doc(tasks.id).update({
       'title': tasks.title,
       'description': tasks.description,
       'dateTime': tasks.dateTime.millisecondsSinceEpoch,
     });
-
   }
 }

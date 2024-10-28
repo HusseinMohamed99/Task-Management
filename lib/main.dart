@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management/core/helpers/export_manager/export_manager.dart';
 import 'package:task_management/firebase_options.dart';
-import 'package:task_management/shared/providers/settings_provider.dart';
 import 'package:upgrader/upgrader.dart';
 import 'package:url_launcher/url_launcher.dart';
 
