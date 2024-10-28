@@ -6,17 +6,17 @@ class MyDialog {
     String message, {
     bool isDismissible = true,
   }) {
+    if (!context.mounted) return;
+
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
       builder: (context) {
         return AlertDialog.adaptive(
           content: Row(
             children: [
               const AdaptiveIndicator(),
-              const Space(
-                width: 15,
-                height: 0,
-              ),
+              const SizedBox(width: 15),
               Text(
                 message,
                 style: GoogleFonts.roboto(
@@ -26,12 +26,11 @@ class MyDialog {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         );
       },
-      barrierDismissible: isDismissible,
     );
   }
 
@@ -44,51 +43,21 @@ class MyDialog {
     String? negActionTitle,
     VoidCallback? negAction,
   }) {
-    List<Widget> actions = [];
-    if (posActionTitle != null) {
-      actions.add(TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-            if (posAction != null) {
-              posAction();
-            }
-          },
-          child: Text(
-            posActionTitle,
-          )));
-    }
-    if (negActionTitle != null) {
-      actions.add(TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-            if (negAction != null) {
-              negAction();
-            }
-          },
-          child: Text(
-            negActionTitle,
-          )));
-    }
+    if (!context.mounted) return;
+
+    List<Widget> actions = _buildDialogActions(
+      context,
+      posActionTitle,
+      posAction,
+      negActionTitle,
+      negAction,
+    );
+
     showDialog(
       context: context,
+      barrierDismissible: isDismissible,
       builder: (context) {
-        if (Platform.operatingSystem == 'android') {
-          return AlertDialog(
-            content: Text(
-              message,
-              style: GoogleFonts.roboto(
-                textStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            actions: actions,
-          );
-        }
-
-        return CupertinoAlertDialog(
+        return AlertDialog(
           content: Text(
             message,
             style: GoogleFonts.roboto(
@@ -102,11 +71,48 @@ class MyDialog {
           actions: actions,
         );
       },
-      barrierDismissible: false,
     );
   }
 
+  static List<Widget> _buildDialogActions(
+    BuildContext context,
+    String? posActionTitle,
+    VoidCallback? posAction,
+    String? negActionTitle,
+    VoidCallback? negAction,
+  ) {
+    List<Widget> actions = [];
+
+    if (posActionTitle != null) {
+      actions.add(
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+            posAction?.call();
+          },
+          child: Text(posActionTitle),
+        ),
+      );
+    }
+
+    if (negActionTitle != null) {
+      actions.add(
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+            negAction?.call();
+          },
+          child: Text(negActionTitle),
+        ),
+      );
+    }
+
+    return actions;
+  }
+
   static void hideDialog(BuildContext context) {
-    pop(context);
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
   }
 }

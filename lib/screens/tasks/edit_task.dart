@@ -307,10 +307,12 @@ class _EditTaskState extends State<EditTask> {
   }
 
   void editTask() {
-    MyDataBase.updateTasks(widget.tasks).then((value) {
-      provider.refreshApp();
-      Navigator.pop(context);
-    });
+    MyDataBase.updateTasks(widget.tasks).then(
+      (value) {
+        provider.refreshApp();
+        Navigator.pop(context);
+      },
+    );
   }
 
   void buildShowDatePicker(BuildContext context) async {
