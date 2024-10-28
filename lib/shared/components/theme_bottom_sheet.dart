@@ -12,7 +12,8 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final isDarkMode = settingsProvider.isDarkMode();
-    final backgroundColor = isDarkMode ? const Color(0xff141922) : Colors.white;
+    final backgroundColor =
+        isDarkMode ? ColorManager.backgroundColor : ColorManager.whiteColor;
 
     return Container(
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -51,7 +52,7 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   }) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final color = settingsProvider.isDarkMode()
-        ? ThemeApp.darkPrimary
+        ? ColorManager.blueColor
         : ThemeApp.lightPrimary;
 
     return InkWell(

@@ -60,7 +60,7 @@ class LanguageBottomSheet extends StatelessWidget {
   Widget _getSelectedItem(BuildContext context, String title) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final textColor = settingsProvider.isDarkMode()
-        ? ThemeApp.darkPrimary
+        ? ColorManager.blueColor
         : ThemeApp.lightPrimary;
 
     return Row(
