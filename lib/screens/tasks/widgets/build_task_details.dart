@@ -23,8 +23,12 @@ class BuildTaskDetails extends StatelessWidget {
           Space(height: 6.h, width: 0),
           Text(
             tasks.description,
-            style: GoogleFonts.roboto(
-              textStyle: Theme.of(context).textTheme.titleSmall,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: buildTextStyle(
+              fontSize: 12,
+              context: context,
+              settingsProvider: Provider.of<SettingsProvider>(context),
             ),
           ),
         ],

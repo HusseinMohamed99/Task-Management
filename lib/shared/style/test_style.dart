@@ -4,7 +4,6 @@ TextStyle buildTextStyle({
   required double fontSize,
   required BuildContext context,
   double? letterSpacing,
-  Color? color,
   required SettingsProvider settingsProvider,
 }) {
   return GoogleFonts.poppins(
