@@ -13,19 +13,19 @@ class CustomCardWidget extends StatelessWidget {
   final IconData iconData;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: settingsProvider.isDarkMode()
-          ? ThemeApp.darkBottom
-          : ThemeApp.lightPrimary,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-        child: InkWell(
-          onTap: function,
+    return GestureDetector(
+      onTap: function,
+      child: Card(
+        color: settingsProvider.isDarkMode()
+            ? ThemeApp.darkBottom
+            : ThemeApp.lightPrimary,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
           child: Row(
             children: [
               Container(
-                width: 55,
-                height: 55,
+                width: 55.w,
+                height: 40.h,
                 decoration: const BoxDecoration(
                   color: ColorManager.whiteColor,
                   shape: BoxShape.circle,
@@ -42,17 +42,10 @@ class CustomCardWidget extends StatelessWidget {
               ),
               Text(
                 titleText,
-                style: settingsProvider.currentLanguage == 'en'
-                    ? Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontSize:
-                              getResponsiveFontSize(context, fontSize: 25.sp),
-                          fontWeight: FontWeight.w600,
-                        )
-                    : Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontSize:
-                              getResponsiveFontSize(context, fontSize: 25.sp),
-                          fontWeight: FontWeight.w600,
-                        ),
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontSize: getResponsiveFontSize(context, fontSize: 25.sp),
+                      fontWeight: FontWeight.w600,
+                    ),
               ),
               const Spacer(),
               Icon(
