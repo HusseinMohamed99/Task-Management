@@ -12,7 +12,7 @@ class BuildTaskContent extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       decoration: BoxDecoration(
         color: provider.isDarkMode()
-            ? ThemeApp.darkPrimary
+            ? ThemeApp.darkBottom
             : ColorManager.whiteColor,
         borderRadius: BorderRadius.circular(18).r,
       ),

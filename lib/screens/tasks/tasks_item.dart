@@ -14,7 +14,7 @@ class TasksItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: settingsProvider.isDarkMode()
-              ? ThemeApp.darkPrimary
+              ? ThemeApp.darkBottom
               : ColorManager.whiteColor,
           borderRadius: BorderRadius.circular(18).r,
         ),
