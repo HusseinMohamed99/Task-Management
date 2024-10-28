@@ -17,14 +17,13 @@ class BuildTaskCompletionIcon extends StatelessWidget {
               AppLocalizations.of(context)!.condition,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
                     color: ColorManager.greenColor,
-                    fontSize: 25.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
             )
           : Container(
               margin: const EdgeInsets.all(25).r,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5).r,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10).r,
                 color: ThemeApp.lightPrimary,
