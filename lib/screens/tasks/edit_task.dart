@@ -286,7 +286,7 @@ class CustomTitleFormField extends StatelessWidget {
       initialValue: task.title,
       keyboardType: TextInputType.text,
       decoration: _buildInputDecoration(
-        labelText: AppLocalizations.of(context)!.title,
+        labelText: AppLocalizations.of(context)!.title_,
         icon: Icons.title,
         provider: provider,
       ),
