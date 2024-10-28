@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_management/core/helpers/export_manager/export_manager.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class ThemeApp {
   static const Color secondaryColor = Colors.blueAccent;
@@ -9,7 +6,6 @@ class ThemeApp {
   static const Color lightPrimary = Color(0xff5D9CEC);
   static const Color darkPrimary = Color(0xff060E1E);
   static const Color darkBottom = Color(0xff141922);
-  static const Color grey = Color(0xffC8C9CB);
   static const Color scaffoldBackgroundColorLight = Color(0xffDFECDB);
   static const Color scaffoldBackgroundColorDark = Color(0xff060E1E);
 
@@ -60,7 +56,7 @@ class ThemeApp {
         color: ColorManager.blackColor,
       ),
       titleSmall: TextStyle(
-        color: Colors.grey,
+        color: ColorManager.greyColor,
       ),
     );
   }
@@ -90,7 +86,7 @@ class ThemeApp {
         fontWeight: FontWeight.w500,
       ),
       iconTheme: IconThemeData(
-        color: Colors.black,
+        color: ColorManager.blackColor,
         size: 24.sp,
       ),
       systemOverlayStyle: const SystemUiOverlayStyle(
@@ -117,12 +113,12 @@ class ThemeApp {
       ),
       unselectedIconTheme: IconThemeData(
         size: 20.sp,
-        color: grey,
+        color: ColorManager.greyColor,
       ),
       selectedLabelStyle: const TextStyle(
-        color: Colors.black,
+        color: ColorManager.blackColor,
       ),
-      selectedItemColor: Colors.black,
+      selectedItemColor: ColorManager.blackColor,
     );
   }
 }

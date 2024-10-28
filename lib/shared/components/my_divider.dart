@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_management/shared/style/theme.dart';
+part of './../../core/helpers/export_manager/export_manager.dart';
 
 class MyDivider extends StatelessWidget {
   const MyDivider({super.key});

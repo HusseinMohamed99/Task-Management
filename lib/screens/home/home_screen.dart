@@ -60,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ? ThemeApp.darkBottom
           : ColorManager.whiteColor,
       padding: EdgeInsets.zero,
-      height: MediaQuery.sizeOf(context).height * .06.h,
       shape: const CircularNotchedRectangle(),
       notchMargin: 10.r,
       child: BottomNavigationBar(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -18,7 +19,6 @@ import 'package:task_management/shared/components/navigator.dart';
 import 'package:task_management/shared/components/size_box.dart';
 import 'package:task_management/shared/database/my_database.dart';
 import 'package:task_management/shared/providers/settings_provider.dart';
-import 'package:task_management/shared/style/theme.dart';
 import 'package:upgrader/upgrader.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,4 +35,7 @@ part './../../../shared/components/theme_bottom_sheet.dart';
 part './../../../shared/components/upgrader_wrapper.dart';
 part './../../../shared/style/color_manager.dart';
 part './../../../shared/style/test_style.dart';
+part './../../../shared/style/theme.dart';
 part './../responsive/font_size.dart';
+
+part './../../../shared/components/my_divider.dart';
