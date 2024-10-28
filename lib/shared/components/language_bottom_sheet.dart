@@ -7,8 +7,8 @@ class LanguageBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final isDarkMode = settingsProvider.isDarkMode();
-    final color = isDarkMode ? const Color(0xff141922) : Colors.white;
-
+    final color =
+        isDarkMode ? ColorManager.backgroundColor : ColorManager.whiteColor;
     return Container(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
