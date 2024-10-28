@@ -18,13 +18,16 @@ class _TasksScreenState extends State<TasksScreen> {
     return Column(
       children: [
         BuildHeader(
-            settingsProvider: settingsProvider,
-            selectedDate: selectedDate,
-            onDateSelected: (date) {
-              setState(() {
+          settingsProvider: settingsProvider,
+          selectedDate: selectedDate,
+          onDateSelected: (date) {
+            setState(
+              () {
                 selectedDate = date;
-              });
-            }),
+              },
+            );
+          },
+        ),
         Expanded(
           child: BuildTaskList(selectedDate: selectedDate),
         ),

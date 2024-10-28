@@ -29,7 +29,6 @@ class TasksItem extends StatelessWidget {
                 backgroundColor: ColorManager.redColor,
                 foregroundColor: ColorManager.whiteColor,
                 icon: Icons.delete_forever,
-                label: AppLocalizations.of(context)!.delete,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(18),
                   bottomLeft: Radius.circular(18),
