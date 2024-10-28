@@ -1,8 +1,8 @@
-name: 'task_management'
-version: 1.0.0+3
+name: "task_management"
+version: 1.0.1+4
 publish_to: none
 environment:
-  sdk: '>=3.4.4 <4.0.0'
+  sdk: ">=3.4.4 <4.0.0"
 description: A new Flutter project.
 dependencies:
   calendar_timeline: ^1.0.5
@@ -30,12 +30,12 @@ dependencies:
   upgrader: ^11.3.0
   url_launcher: ^6.3.1
 dev_dependencies:
-  custom_lint: '^0.6.4'
-  custom_lint_builder: '^0.6.4'
-  flutter_lints: '^4.0.0'
+  custom_lint: "^0.6.4"
+  custom_lint_builder: "^0.6.4"
+  flutter_lints: "^4.0.0"
   flutter_test:
     sdk: flutter
-  pubspec_dependency_sorter: '^1.0.5'
+  pubspec_dependency_sorter: "^1.0.5"
 flutter:
   generate: true
   uses-material-design: true

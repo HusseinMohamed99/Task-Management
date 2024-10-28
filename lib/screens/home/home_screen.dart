@@ -90,9 +90,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void showTasksBottomSheet() {
     showModalBottomSheet(
+      // allows it to take up more space when the keyboard opens
+      isScrollControlled: true,
       context: context,
       builder: (buildContext) {
-        return const TasksBottomSheet();
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: const TasksBottomSheet(),
+        );
       },
     );
   }
