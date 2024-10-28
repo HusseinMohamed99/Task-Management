@@ -41,3 +41,8 @@ part './../../../shared/style/color_manager.dart';
 part './../../../shared/style/test_style.dart';
 part './../../../shared/style/theme.dart';
 part './../responsive/font_size.dart';
+
+part './../../../screens/tasks/widgets/build_empty_task.dart';
+part './../../../screens/tasks/widgets/build_error_task.dart';
+part './../../../screens/tasks/widgets/build_task_list.dart';
+part './../../../screens/tasks/widgets/build_header.dart';
