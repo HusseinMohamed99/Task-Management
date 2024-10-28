@@ -28,7 +28,7 @@ class _EditTaskState extends State<EditTask> {
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: ColorManager.whiteColor,
             size: 24.sp,
           ),
           onPressed: () {
@@ -59,7 +59,7 @@ class _EditTaskState extends State<EditTask> {
                 decoration: BoxDecoration(
                   color: provider.isDarkMode()
                       ? ThemeApp.darkBottom
-                      : Colors.white,
+                      : ColorManager.whiteColor,
                   borderRadius: const BorderRadius.all(Radius.circular(20)).r,
                 ),
                 child: Column(
@@ -72,8 +72,8 @@ class _EditTaskState extends State<EditTask> {
                         textStyle:
                             Theme.of(context).textTheme.headlineSmall!.copyWith(
                                   color: provider.isDarkMode()
-                                      ? Colors.white
-                                      : Colors.black,
+                                      ? ColorManager.whiteColor
+                                      : ColorManager.blackColor,
                                 ),
                       ),
                     ),
@@ -81,8 +81,9 @@ class _EditTaskState extends State<EditTask> {
                       maxLines: 3,
                       minLines: 1,
                       style: TextStyle(
-                        color:
-                            provider.isDarkMode() ? Colors.white : Colors.black,
+                        color: provider.isDarkMode()
+                            ? ColorManager.whiteColor
+                            : ColorManager.blackColor,
                       ),
                       initialValue: widget.tasks.title,
                       keyboardType: TextInputType.text,
@@ -90,14 +91,14 @@ class _EditTaskState extends State<EditTask> {
                         labelText: AppLocalizations.of(context)!.title_,
                         labelStyle: TextStyle(
                           color: provider.isDarkMode()
-                              ? Colors.white
-                              : Colors.black,
+                              ? ColorManager.whiteColor
+                              : ColorManager.blackColor,
                         ),
                         prefixIcon: Icon(
                           Icons.edit,
                           color: provider.isDarkMode()
-                              ? Colors.white
-                              : Colors.black,
+                              ? ColorManager.whiteColor
+                              : ColorManager.blackColor,
                           size: 24.sp,
                         ),
                       ),
@@ -117,8 +118,9 @@ class _EditTaskState extends State<EditTask> {
                     Space(width: 0, height: responsiveHeight * .012.h),
                     TextFormField(
                       style: TextStyle(
-                        color:
-                            provider.isDarkMode() ? Colors.white : Colors.black,
+                        color: provider.isDarkMode()
+                            ? ColorManager.whiteColor
+                            : ColorManager.blackColor,
                       ),
                       initialValue: widget.tasks.description,
                       maxLines: 5,
@@ -127,15 +129,15 @@ class _EditTaskState extends State<EditTask> {
                       decoration: InputDecoration(
                         labelStyle: TextStyle(
                           color: provider.isDarkMode()
-                              ? Colors.white
-                              : Colors.black,
+                              ? ColorManager.whiteColor
+                              : ColorManager.blackColor,
                         ),
                         labelText: AppLocalizations.of(context)!.desc,
                         prefixIcon: Icon(
                           Icons.description,
                           color: provider.isDarkMode()
-                              ? Colors.white
-                              : Colors.black,
+                              ? ColorManager.whiteColor
+                              : ColorManager.blackColor,
                           size: 24.sp,
                         ),
                       ),
@@ -170,8 +172,8 @@ class _EditTaskState extends State<EditTask> {
                                       .titleLarge!
                                       .copyWith(
                                         color: provider.isDarkMode()
-                                            ? Colors.white
-                                            : Colors.black,
+                                            ? ColorManager.whiteColor
+                                            : ColorManager.blackColor,
                                       ),
                                 ),
                               ),
@@ -182,7 +184,7 @@ class _EditTaskState extends State<EditTask> {
                                 height: 52.h,
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.grey,
+                                      color: ColorManager.greyColor,
                                       width: 1.0.w,
                                     ),
                                     borderRadius: BorderRadius.circular(12)),
@@ -198,15 +200,15 @@ class _EditTaskState extends State<EditTask> {
                                             .textTheme
                                             .titleLarge!
                                             .copyWith(
-                                              color: Colors.grey,
+                                              color: ColorManager.greyColor,
                                             ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.date_range,
                                       color: provider.isDarkMode()
-                                          ? Colors.white
-                                          : Colors.black,
+                                          ? ColorManager.whiteColor
+                                          : ColorManager.blackColor,
                                       size: 24.sp,
                                     ),
                                   ],
@@ -231,8 +233,8 @@ class _EditTaskState extends State<EditTask> {
                                       .titleLarge!
                                       .copyWith(
                                         color: provider.isDarkMode()
-                                            ? Colors.white
-                                            : Colors.black,
+                                            ? ColorManager.whiteColor
+                                            : ColorManager.blackColor,
                                       ),
                                 ),
                               ),
@@ -243,7 +245,8 @@ class _EditTaskState extends State<EditTask> {
                                 height: 52.h,
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                        color: Colors.grey, width: 1.0.w),
+                                        color: ColorManager.greyColor,
+                                        width: 1.0.w),
                                     borderRadius: BorderRadius.circular(12)),
                                 child: Row(
                                   mainAxisAlignment:
@@ -256,15 +259,15 @@ class _EditTaskState extends State<EditTask> {
                                             .textTheme
                                             .titleLarge!
                                             .copyWith(
-                                              color: Colors.grey,
+                                              color: ColorManager.greyColor,
                                             ),
                                       ),
                                     ),
                                     Icon(
                                       Icons.watch_later_outlined,
                                       color: provider.isDarkMode()
-                                          ? Colors.white
-                                          : Colors.black,
+                                          ? ColorManager.whiteColor
+                                          : ColorManager.blackColor,
                                       size: 24.sp,
                                     ),
                                   ],
@@ -283,7 +286,10 @@ class _EditTaskState extends State<EditTask> {
                       ),
                       child: TextButton(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          onPressed: editTask,
+                          onPressed: () {
+                            editTask();
+                            Navigator.pop(context);
+                          },
                           child: Text(
                             AppLocalizations.of(context)!.save,
                             style: GoogleFonts.poppins(
@@ -291,7 +297,7 @@ class _EditTaskState extends State<EditTask> {
                                   .textTheme
                                   .titleLarge
                                   ?.copyWith(
-                                    color: Colors.white,
+                                    color: ColorManager.whiteColor,
                                   ),
                             ),
                           )),
@@ -310,7 +316,6 @@ class _EditTaskState extends State<EditTask> {
     MyDataBase.updateTasks(widget.tasks).then(
       (value) {
         provider.refreshApp();
-        Navigator.pop(context);
       },
     );
   }
