@@ -1,39 +1,40 @@
+class TasksModel {
+  String id;
+  String title;
+  String description;
+  DateTime dateTime;
+  bool isDone;
+  String userId; // ✅ جديد: لتحديد صاحب التاسك
 
-class TasksModel
-{
-   String id;
-   String title;
-   String description;
-   DateTime dateTime;
-   bool isDone;
+  TasksModel({
+    this.id = '',
+    required this.title,
+    required this.description,
+    required this.dateTime,
+    this.isDone = false,
+    this.userId = '', // ✅ تأكد من وجود قيمة افتراضية
+  });
 
-   TasksModel(
-   {
-    this.id ='',
-   required this.title,
-   required this.description,
-   required this.dateTime,
-     this.isDone = false,
-});
+  // 🟢 تحويل من Firestore إلى TasksModel
+  TasksModel.fromFireStore(Map<String, dynamic> data)
+    : this(
+        id: data['id'] ?? '',
+        title: data['title'] ?? '',
+        description: data['description'] ?? '',
+        dateTime: DateTime.fromMillisecondsSinceEpoch(data['dateTime']),
+        isDone: data['isDone'] ?? false,
+        userId: data['userId'] ?? '', // ✅ قراءة الـ userId
+      );
 
-   TasksModel.fromFireStore(Map<String,dynamic> data) :
-       this(
-         id: data['id'],
-         title: data['title'],
-         description: data['description'],
-         dateTime: DateTime.fromMillisecondsSinceEpoch(data['dateTime']),
-         isDone: data['isDone'],
-
-       );
-
-  Map<String,dynamic> toFireStore() {
-     return
-       {
-         'id'  : id,
-         'title' : title,
-         'description': description,
-         'isDone' : isDone,
-         'dateTime' : dateTime.millisecondsSinceEpoch,
-       };
+  // 🟢 تحويل من TasksModel إلى Map للتخزين في Firestore
+  Map<String, dynamic> toFireStore() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'isDone': isDone,
+      'dateTime': dateTime.millisecondsSinceEpoch,
+      'userId': userId, // ✅ إضافة الـ userId في الحفظ
+    };
   }
 }

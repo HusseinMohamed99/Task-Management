@@ -22,47 +22,54 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "add": MessageLookupByLibrary.simpleMessage("Submit"),
-        "addtask": MessageLookupByLibrary.simpleMessage("Add New Task"),
-        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "condition": MessageLookupByLibrary.simpleMessage("   Done! ✅  "),
-        "dark": MessageLookupByLibrary.simpleMessage("Dark"),
-        "date": MessageLookupByLibrary.simpleMessage("Date"),
-        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "delete_task": MessageLookupByLibrary.simpleMessage(
-            "\'Are You Sure .  Delete This Task ?\',"),
-        "desc": MessageLookupByLibrary.simpleMessage("Description"),
-        "desc_length": MessageLookupByLibrary.simpleMessage(
-            "Description should be at least a 3 characters"),
-        "edit": MessageLookupByLibrary.simpleMessage("Edit Task"),
-        "english": MessageLookupByLibrary.simpleMessage("English"),
-        "error_loading": MessageLookupByLibrary.simpleMessage(
-            "Error Loading Tasks Try Again Later"),
-        "language": MessageLookupByLibrary.simpleMessage("Language"),
-        "light": MessageLookupByLibrary.simpleMessage("Light"),
-        "loading": MessageLookupByLibrary.simpleMessage("Loading"),
-        "mode": MessageLookupByLibrary.simpleMessage("Mode"),
-        "no_task": MessageLookupByLibrary.simpleMessage("No Tasks Yet!"),
-        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
-        "save": MessageLookupByLibrary.simpleMessage("Save Changes"),
-        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "task": MessageLookupByLibrary.simpleMessage("Task"),
-        "task_error":
-            MessageLookupByLibrary.simpleMessage("Error Inserting Task"),
-        "task_insert":
-            MessageLookupByLibrary.simpleMessage("Task Inserted Successfully"),
-        "theme": MessageLookupByLibrary.simpleMessage("Theme"),
-        "time": MessageLookupByLibrary.simpleMessage("Time"),
-        "title": MessageLookupByLibrary.simpleMessage("Task Management"),
-        "title_": MessageLookupByLibrary.simpleMessage("Title"),
-        "title_length": MessageLookupByLibrary.simpleMessage(
-            "Title should be at least a 3 characters"),
-        "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
-        "valid_desc": MessageLookupByLibrary.simpleMessage(
-            "Please Enter a valid Description"),
-        "valid_title":
-            MessageLookupByLibrary.simpleMessage("Please Enter a valid Title"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes")
-      };
+    "add": MessageLookupByLibrary.simpleMessage("Submit"),
+    "addtask": MessageLookupByLibrary.simpleMessage("Add New Task"),
+    "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "condition": MessageLookupByLibrary.simpleMessage("   Done! ✅  "),
+    "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "date": MessageLookupByLibrary.simpleMessage("Date"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "delete_task": MessageLookupByLibrary.simpleMessage(
+      "\'Are You Sure .  Delete This Task ?\',",
+    ),
+    "desc": MessageLookupByLibrary.simpleMessage("Description"),
+    "desc_length": MessageLookupByLibrary.simpleMessage(
+      "Description should be at least a 3 characters",
+    ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit Task"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
+    "error_loading": MessageLookupByLibrary.simpleMessage(
+      "Error Loading Tasks Try Again Later",
+    ),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "light": MessageLookupByLibrary.simpleMessage("Light"),
+    "loading": MessageLookupByLibrary.simpleMessage("Loading"),
+    "mode": MessageLookupByLibrary.simpleMessage("Mode"),
+    "no_task": MessageLookupByLibrary.simpleMessage("No Tasks Yet!"),
+    "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+    "rating": MessageLookupByLibrary.simpleMessage("Rating"),
+    "save": MessageLookupByLibrary.simpleMessage("Save Changes"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "task": MessageLookupByLibrary.simpleMessage("Task"),
+    "task_error": MessageLookupByLibrary.simpleMessage("Error Inserting Task"),
+    "task_insert": MessageLookupByLibrary.simpleMessage(
+      "Task Inserted Successfully",
+    ),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "time": MessageLookupByLibrary.simpleMessage("Time"),
+    "title": MessageLookupByLibrary.simpleMessage("Task Management"),
+    "title_": MessageLookupByLibrary.simpleMessage("Title"),
+    "title_length": MessageLookupByLibrary.simpleMessage(
+      "Title should be at least a 3 characters",
+    ),
+    "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
+    "valid_desc": MessageLookupByLibrary.simpleMessage(
+      "Please Enter a valid Description",
+    ),
+    "valid_title": MessageLookupByLibrary.simpleMessage(
+      "Please Enter a valid Title",
+    ),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+  };
 }

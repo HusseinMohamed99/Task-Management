@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:task_management/generated/intl/messages_all.dart';
+import 'intl/messages_all.dart';
 
 // **************************************************************************
 // Generator: Flutter Intl IDE plugin
@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -52,32 +56,17 @@ class S {
 
   /// `Task Management`
   String get title {
-    return Intl.message(
-      'Task Management',
-      name: 'title',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Task Management', name: 'title', desc: '', args: []);
   }
 
   /// `   Done! ✅  `
   String get condition {
-    return Intl.message(
-      '   Done! ✅  ',
-      name: 'condition',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('   Done! ✅  ', name: 'condition', desc: '', args: []);
   }
 
   /// `Task`
   String get task {
-    return Intl.message(
-      'Task',
-      name: 'task',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Task', name: 'task', desc: '', args: []);
   }
 
   /// `'Are You Sure .  Delete This Task ?',`
@@ -92,62 +81,32 @@ class S {
 
   /// `Mode`
   String get mode {
-    return Intl.message(
-      'Mode',
-      name: 'mode',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Mode', name: 'mode', desc: '', args: []);
   }
 
   /// `Delete`
   String get delete {
-    return Intl.message(
-      'Delete',
-      name: 'delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
 
   /// `Add New Task`
   String get addtask {
-    return Intl.message(
-      'Add New Task',
-      name: 'addtask',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add New Task', name: 'addtask', desc: '', args: []);
   }
 
   /// `Title`
   String get title_ {
-    return Intl.message(
-      'Title',
-      name: 'title_',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Title', name: 'title_', desc: '', args: []);
   }
 
   /// `No Tasks Yet!`
   String get no_task {
-    return Intl.message(
-      'No Tasks Yet!',
-      name: 'no_task',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No Tasks Yet!', name: 'no_task', desc: '', args: []);
   }
 
   /// `Try Again`
   String get try_again {
-    return Intl.message(
-      'Try Again',
-      name: 'try_again',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Try Again', name: 'try_again', desc: '', args: []);
   }
 
   /// `Error Loading Tasks Try Again Later`
@@ -202,22 +161,12 @@ class S {
 
   /// `Yes`
   String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
   }
 
   /// `Ok`
   String get ok {
-    return Intl.message(
-      'Ok',
-      name: 'ok',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ok', name: 'ok', desc: '', args: []);
   }
 
   /// `Task Inserted Successfully`
@@ -242,152 +191,82 @@ class S {
 
   /// `Loading`
   String get loading {
-    return Intl.message(
-      'Loading',
-      name: 'loading',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Loading', name: 'loading', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Description`
   String get desc {
-    return Intl.message(
-      'Description',
-      name: 'desc',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Description', name: 'desc', desc: '', args: []);
   }
 
   /// `Date`
   String get date {
-    return Intl.message(
-      'Date',
-      name: 'date',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Date', name: 'date', desc: '', args: []);
   }
 
   /// `Time`
   String get time {
-    return Intl.message(
-      'Time',
-      name: 'time',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Time', name: 'time', desc: '', args: []);
   }
 
   /// `Settings`
   String get settings {
-    return Intl.message(
-      'Settings',
-      name: 'settings',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
   /// `Language`
   String get language {
-    return Intl.message(
-      'Language',
-      name: 'language',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Language', name: 'language', desc: '', args: []);
   }
 
   /// `Theme`
   String get theme {
-    return Intl.message(
-      'Theme',
-      name: 'theme',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
   }
 
   /// `Light`
   String get light {
-    return Intl.message(
-      'Light',
-      name: 'light',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Light', name: 'light', desc: '', args: []);
   }
 
   /// `Dark`
   String get dark {
-    return Intl.message(
-      'Dark',
-      name: 'dark',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Dark', name: 'dark', desc: '', args: []);
   }
 
   /// `Edit Task`
   String get edit {
-    return Intl.message(
-      'Edit Task',
-      name: 'edit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit Task', name: 'edit', desc: '', args: []);
   }
 
   /// `Save Changes`
   String get save {
-    return Intl.message(
-      'Save Changes',
-      name: 'save',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save Changes', name: 'save', desc: '', args: []);
   }
 
   /// `English`
   String get english {
-    return Intl.message(
-      'English',
-      name: 'english',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('English', name: 'english', desc: '', args: []);
   }
 
   /// `Arabic`
   String get arabic {
-    return Intl.message(
-      'Arabic',
-      name: 'arabic',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message('Rating', name: 'rating', desc: '', args: []);
   }
 
   /// `Submit`
   String get add {
-    return Intl.message(
-      'Submit',
-      name: 'add',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Submit', name: 'add', desc: '', args: []);
   }
 }
 
@@ -395,9 +274,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
-    ];
+    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
   }
 
   @override

@@ -2,49 +2,53 @@ part of './../../core/helpers/export_manager/export_manager.dart';
 
 class MyDataBase {
   static CollectionReference<TasksModel> getTasksCollection() {
-    var tasksCollection = FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection('tasks')
         .withConverter<TasksModel>(
-          fromFirestore: (snapshot, options) =>
+          fromFirestore: (snapshot, _) =>
               TasksModel.fromFireStore(snapshot.data()!),
-          toFirestore: (tasks, options) => tasks.toFireStore(),
+          toFirestore: (task, _) => task.toFireStore(),
         );
-    return tasksCollection;
   }
 
-  static Future<void> insertTasks(TasksModel tasks) {
-    var tasksCollection = getTasksCollection();
+  static Future<void> insertTasks(TasksModel task) async {
+    final tasksCollection = getTasksCollection();
+    final doc = tasksCollection.doc();
+    final userId = await LocalUserHelper.getUserId(); // ✅ Get device/user id
 
-    var doc = tasksCollection.doc();
-    tasks.id = doc.id;
-    tasks.dateTime = tasks.dateTime.extractDateOnly();
-    return doc.set(tasks);
+    task
+      ..id = doc.id
+      ..userId = userId
+      ..dateTime = task.dateTime.extractDateOnly();
+
+    await doc.set(task);
   }
 
-  static Stream<QuerySnapshot<TasksModel>> getTasks(DateTime dateTime) {
-    return getTasksCollection()
-        .where('dateTime',
-            isEqualTo: dateTime.extractDateOnly().millisecondsSinceEpoch)
+  static Stream<QuerySnapshot<TasksModel>> getTasks(DateTime dateTime) async* {
+    final userId = await LocalUserHelper.getUserId(); // ✅ Get userId
+    final dateMillis = dateTime.extractDateOnly().millisecondsSinceEpoch;
+
+    yield* getTasksCollection()
+        .where('dateTime', isEqualTo: dateMillis)
+        .where('userId', isEqualTo: userId) // ✅ Filter by device
         .snapshots();
   }
 
-  static Future<void> deleteTask(TasksModel tasks) {
-    var taskDoc = getTasksCollection().doc(tasks.id);
-    return taskDoc.delete();
+  static Future<void> deleteTask(TasksModel task) async {
+    await getTasksCollection().doc(task.id).delete();
   }
 
-  static isDone(TasksModel tasks) {
-    getTasksCollection().doc(tasks.id).update({
-      'isDone': tasks.isDone ? false : true,
+  static Future<void> isDone(TasksModel task) async {
+    await getTasksCollection().doc(task.id).update({
+      'isDone': !task.isDone, // ✅ toggle
     });
   }
 
-  static Future<void> updateTasks(TasksModel tasks) {
-    CollectionReference todoRef = getTasksCollection();
-    return todoRef.doc(tasks.id).update({
-      'title': tasks.title,
-      'description': tasks.description,
-      'dateTime': tasks.dateTime.millisecondsSinceEpoch,
+  static Future<void> updateTasks(TasksModel task) async {
+    await getTasksCollection().doc(task.id).update({
+      'title': task.title,
+      'description': task.description,
+      'dateTime': task.dateTime.millisecondsSinceEpoch,
     });
   }
 }
